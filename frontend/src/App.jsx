@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ComponentShowcase from './ComponentShowcase';
 
 // Placeholder Pages
 const PortfolioDashboard = () => <div className="p-8">PortfolioDashboard</div>;
@@ -30,6 +31,7 @@ function App() {
             <Route path="/swing" element={<SwingTrade />} />
             <Route path="/thesis" element={<ThesisJournal />} />
             <Route path="/reports" element={<WeeklyReport />} />
+            <Route path="/showcase" element={<ComponentShowcase />} />
           </Routes>
         </main>
       </div>

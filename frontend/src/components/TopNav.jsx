@@ -14,7 +14,7 @@ const TopNav = ({ activePage }) => {
     <header className="sticky top-0 z-50 w-full bg-surface border-b border-subtle h-16 flex items-center justify-between px-6">
       <div className="flex items-center gap-8 h-full">
         <Link to="/" className="font-ui text-[18px] font-semibold tracking-tight text-accent">
-          EquityLens
+          MarketMint
         </Link>
         <nav className="hidden md:flex items-center h-full gap-6">
           {navLinks.map((link) => {

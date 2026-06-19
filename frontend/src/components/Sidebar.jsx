@@ -34,7 +34,7 @@ const Sidebar = ({ activePage, collapsed = false }) => {
         </div>
         {!collapsed && (
           <div className="ml-3 overflow-hidden">
-            <h1 className="font-ui text-[15px] font-semibold text-primary truncate">EquityLens</h1>
+            <h1 className="font-ui text-[15px] font-semibold text-primary truncate">MarketMint</h1>
             <p className="font-ui text-[11px] text-muted truncate">Pro Workspace</p>
           </div>
         )}

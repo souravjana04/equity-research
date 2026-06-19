@@ -16,11 +16,18 @@ const SectorHeatmapTile = ({ sector, change, stocks = [], size = 'md', trend }) 
   const showChildren = size === 'lg' && stocks.length > 0;
 
   return (
-    <div className={`rounded-lg border ${variantMap[trend]} ${sizeClasses[size]} flex flex-col transition-transform hover:scale-[1.01] cursor-pointer`}>
-      <div className={`flex ${size === 'sm' ? 'items-center justify-between w-full' : 'justify-between mb-auto'}`}>
-        <span className="font-ui text-[13px] font-semibold">{sector}</span>
-        <span className="font-mono text-[13px] font-medium">{change}</span>
-      </div>
+    <div className={`rounded-lg border min-w-[128px] ${variantMap[trend]} ${sizeClasses[size]} flex flex-col transition-transform hover:scale-[1.01] cursor-pointer`}>
+      {size === 'sm' ? (
+        <div className="flex items-center justify-between w-full">
+          <span className="font-ui text-[13px] font-semibold">{sector}</span>
+          <span className="font-mono text-[13px] font-medium">{change}</span>
+        </div>
+      ) : (
+        <div className="flex flex-col gap-1">
+          <span className="font-ui text-[13px] font-semibold leading-tight">{sector}</span>
+          <span className="font-mono text-[15px] font-semibold">{change}</span>
+        </div>
+      )}
 
       {showChildren && (
         <div className="mt-3 flex flex-col gap-1.5">

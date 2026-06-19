@@ -20,7 +20,7 @@ async def lifespan(app: FastAPI):
     yield
     # Cleanup on shutdown
 
-app = FastAPI(title="Equity Research API", lifespan=lifespan)
+app = FastAPI(title="MarketMint API", lifespan=lifespan)
 
 # Setup CORS
 app.add_middleware(
