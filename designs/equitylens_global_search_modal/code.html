@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EquityLens - Global Search Terminal</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "tertiary": "#5e5e67",
+                    "gain": "#059669",
+                    "tertiary-container": "#94939d",
+                    "primary-container": "#0ea882",
+                    "on-tertiary-container": "#2c2c34",
+                    "surface-container-high": "#e8e8e7",
+                    "gain-tint-border": "#B9EFE1",
+                    "border-strong": "#D4D4D8",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eeeeed",
+                    "tertiary-fixed": "#e3e1ec",
+                    "primary-fixed": "#7bf9ce",
+                    "primary-fixed-dim": "#5cdcb3",
+                    "on-secondary": "#ffffff",
+                    "border-default": "#E4E4E7",
+                    "outline": "#6d7a73",
+                    "on-background": "#1a1c1c",
+                    "on-secondary-container": "#656467",
+                    "on-primary-fixed-variant": "#00513d",
+                    "on-secondary-fixed-variant": "#47464a",
+                    "on-error": "#ffffff",
+                    "loss-tint-border": "#FECACA",
+                    "background": "#f9f9f8",
+                    "secondary-fixed-dim": "#c8c5ca",
+                    "inverse-surface": "#2f3130",
+                    "border-subtle": "#F0F0EF",
+                    "on-surface-variant": "#3d4a44",
+                    "on-tertiary-fixed-variant": "#46464f",
+                    "surface-container-low": "#f3f4f3",
+                    "loss-tint-bg": "#FEF2F2",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1c",
+                    "text-muted": "#A1A1AA",
+                    "tertiary-fixed-dim": "#c7c5d0",
+                    "secondary-container": "#e4e1e6",
+                    "loss": "#EF4444",
+                    "on-secondary-fixed": "#1b1b1e",
+                    "info-tint-border": "#BFDBFE",
+                    "on-primary-container": "#003426",
+                    "on-primary": "#ffffff",
+                    "secondary": "#5f5e61",
+                    "bg-muted": "#F4F4F5",
+                    "surface": "#f9f9f8",
+                    "outline-variant": "#bccac2",
+                    "bg-surface": "#FFFFFF",
+                    "warning": "#F59E0B",
+                    "warning-tint-bg": "#FFFBEB",
+                    "surface-tint": "#006c52",
+                    "surface-dim": "#dadad9",
+                    "inverse-primary": "#5cdcb3",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f9f9f8",
+                    "primary": "#006c52",
+                    "inverse-on-surface": "#f1f1f0",
+                    "on-primary-fixed": "#002117",
+                    "surface-variant": "#e2e2e2",
+                    "info": "#2563EB",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-tertiary-fixed": "#1a1b23",
+                    "gain-tint-bg": "#F0FBF7",
+                    "info-tint-bg": "#EFF6FF",
+                    "warning-tint-border": "#FDE68A",
+                    "secondary-fixed": "#e4e1e6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter-tight": "6px",
+                    "page-x": "24px",
+                    "card-padding": "16px",
+                    "page-y": "28px",
+                    "metric-cell-px": "11px",
+                    "gutter-default": "10px",
+                    "section-gap": "36px",
+                    "metric-cell-py": "9px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "data-lg": ["JetBrains Mono"],
+                    "label-caps": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display": ["Inter"],
+                    "data-md": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline": ["15px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "data-lg": ["20px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "caption": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display": ["22px", {"lineHeight": "32px", "letterSpacing": "-0.4px", "fontWeight": "600"}],
+                    "data-md": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9f8;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .search-shortcut {
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+        }
+        .modal-overlay {
+            backdrop-filter: blur(4px);
+            background: rgba(26, 28, 28, 0.4);
+        }
+        .ticker-chip {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.02em;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Mock Background Content (Blurred dashboard for context) -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none opacity-40">
+<header class="fixed top-0 w-full bg-bg-surface border-b border-border-subtle h-14 flex items-center px-page-x justify-between">
+<div class="font-headline text-headline font-bold text-primary">EquityLens</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container"></div>
+</div>
+</header>
+<div class="p-page-x pt-20 grid grid-cols-12 gap-gutter-default">
+<div class="col-span-3 h-64 bg-white border border-border-default rounded-lg"></div>
+<div class="col-span-9 h-64 bg-white border border-border-default rounded-lg"></div>
+<div class="col-span-12 h-96 bg-white border border-border-default rounded-lg"></div>
+</div>
+</div>
+<!-- Search Modal Overlay -->
+<div class="modal-overlay fixed inset-0 z-[100] flex items-start justify-center pt-[153px]" id="search-modal">
+<!-- Modal Content Container -->
+<div class="w-full max-w-2xl bg-bg-surface rounded-xl border border-border-strong shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+<!-- Search Input Header -->
+<div class="relative flex items-center h-16 border-b border-border-subtle px-card-padding">
+<span class="material-symbols-outlined text-outline mr-3">search</span>
+<input autofocus="" class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-on-surface placeholder:text-text-muted text-[15px]" placeholder="Search tickers, tools, or research..." type="text"/>
+<div class="flex items-center gap-2">
+<span class="search-shortcut text-secondary">ESC</span>
+<div class="flex items-center gap-1 text-secondary">
+<span class="search-shortcut">⌘</span>
+<span class="search-shortcut">K</span>
+</div>
+</div>
+</div>
+<!-- Modal Body (Scrollable Results) -->
+<div class="max-h-[614px] overflow-y-auto">
+<!-- Section: Recent Tickers -->
+<div class="p-gutter-tight">
+<div class="px-3 py-2 flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-text-muted uppercase">Recent Tickers</span>
+</div>
+<div class="space-y-1">
+<!-- Ticker Item -->
+<div class="group flex items-center justify-between p-3 rounded-lg hover:bg-bg-muted cursor-pointer transition-colors">
+<div class="flex items-center gap-4">
+<div class="ticker-chip px-2 py-1 bg-gain-tint-bg text-gain border border-gain-tint-border rounded">RELIANCE</div>
+<div>
+<div class="font-headline text-headline text-on-surface">Reliance Industries Ltd</div>
+<div class="font-caption text-caption text-secondary">NSE • Energy &amp; Petrochemicals</div>
+</div>
+</div>
+<div class="flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="font-body-sm text-body-sm text-secondary mr-2">Enter to View</span>
+<span class="material-symbols-outlined text-outline text-[18px]">keyboard_return</span>
+</div>
+</div>
+<!-- Ticker Item -->
+<div class="group flex items-center justify-between p-3 rounded-lg hover:bg-bg-muted cursor-pointer transition-colors">
+<div class="flex items-center gap-4">
+<div class="ticker-chip px-2 py-1 bg-loss-tint-bg text-loss border border-loss-tint-border rounded">HDFCBANK</div>
+<div>
+<div class="font-headline text-headline text-on-surface">HDFC Bank Limited</div>
+<div class="font-caption text-caption text-secondary">NSE • Banking &amp; Finance</div>
+</div>
+</div>
+<div class="flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="font-body-sm text-body-sm text-secondary mr-2">Enter to View</span>
+<span class="material-symbols-outlined text-outline text-[18px]">keyboard_return</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Tools & Pages -->
+<div class="p-gutter-tight border-t border-border-subtle mt-2">
+<div class="px-3 py-2">
+<span class="font-label-caps text-label-caps text-text-muted uppercase">Tools &amp; Pages</span>
+</div>
+<div class="grid grid-cols-2 gap-1">
+<!-- Page Item -->
+<div class="group flex items-center p-3 rounded-lg hover:bg-bg-muted cursor-pointer transition-colors">
+<div class="w-8 h-8 rounded bg-secondary-container flex items-center justify-center mr-3 group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-secondary-container group-hover:text-on-primary-container text-[20px]">filter_alt</span>
+</div>
+<div>
+<div class="font-headline text-headline text-on-surface">Screener</div>
+<div class="font-caption text-caption text-secondary">Equity Scanning Terminal</div>
+</div>
+</div>
+<!-- Page Item -->
+<div class="group flex items-center p-3 rounded-lg hover:bg-bg-muted cursor-pointer transition-colors">
+<div class="w-8 h-8 rounded bg-secondary-container flex items-center justify-center mr-3 group-hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-on-secondary-container group-hover:text-on-primary-container text-[20px]">account_balance_wallet</span>
+</div>
+<div>
+<div class="font-headline text-headline text-on-surface">Portfolio</div>
+<div class="font-caption text-caption text-secondary">Holdings &amp; Analytics</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Recent Research -->
+<div class="p-gutter-tight border-t border-border-subtle mt-2">
+<div class="px-3 py-2">
+<span class="font-label-caps text-label-caps text-text-muted uppercase">Recent Research</span>
+</div>
+<div class="space-y-1">
+<!-- Research Item -->
+<div class="group flex items-center justify-between p-3 rounded-lg hover:bg-bg-muted cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">description</span>
+<div>
+<div class="font-headline text-headline text-on-surface">Q4 Results Summary - BFSI Sector</div>
+<div class="font-caption text-caption text-secondary">Published 2 hours ago • By Institutional Research Team</div>
+</div>
+</div>
+<div class="search-shortcut text-secondary opacity-0 group-hover:opacity-100">⌘ + 1</div>
+</div>
+<!-- Research Item -->
+<div class="group flex items-center justify-between p-3 rounded-lg hover:bg-bg-muted cursor-pointer transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">analytics</span>
+<div>
+<div class="font-headline text-headline text-on-surface">Semi-annual Macro Outlook 2024</div>
+<div class="font-caption text-caption text-secondary">Published yesterday • Strategic Analysis</div>
+</div>
+</div>
+<div class="search-shortcut text-secondary opacity-0 group-hover:opacity-100">⌘ + 2</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer (System Status / Global Help) -->
+<div class="bg-surface-container-low h-10 px-card-padding flex items-center justify-between border-t border-border-subtle">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-gain"></span>
+<span class="font-caption text-caption text-secondary">Market Open</span>
+</div>
+<div class="h-3 w-px bg-border-default"></div>
+<div class="flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span class="font-caption text-caption">6 results found</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[16px]">keyboard_arrow_up</span>
+<span class="material-symbols-outlined text-[16px]">keyboard_arrow_down</span>
+<span class="font-caption text-caption">Navigate</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('keydown', (e) => {
+            // Escape to "close" (just visual logic here)
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('search-modal');
+                modal.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 200);
+            }
+            
+            // Cmd + K or Ctrl + K visual focus
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                const modal = document.getElementById('search-modal');
+                modal.style.display = 'flex';
+                modal.classList.remove('opacity-0', 'scale-95');
+                document.querySelector('input').focus();
+            }
+        });
+
+        // Toggle hover states for demo feel
+        const items = document.querySelectorAll('.group');
+        items.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                // Potential sound effect or haptic trigger
+            });
+        });
+    </script>
+</body></html>

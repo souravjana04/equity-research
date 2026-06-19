@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Data Tables &amp; Grid Systems | EquityLens</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#5f5e61",
+                      "background": "#f9f9f8",
+                      "on-secondary-container": "#656467",
+                      "loss": "#EF4444",
+                      "info-tint-border": "#BFDBFE",
+                      "on-surface": "#1a1c1c",
+                      "bg-muted": "#F4F4F5",
+                      "warning-tint-bg": "#FFFBEB",
+                      "tertiary-fixed": "#e3e1ec",
+                      "warning-tint-border": "#FDE68A",
+                      "surface-variant": "#e2e2e2",
+                      "primary-container": "#0ea882",
+                      "tertiary-fixed-dim": "#c7c5d0",
+                      "on-secondary-fixed": "#1b1b1e",
+                      "on-tertiary-container": "#2c2c34",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#5cdcb3",
+                      "inverse-primary": "#5cdcb3",
+                      "surface-container-low": "#f3f4f3",
+                      "border-default": "#E4E4E7",
+                      "secondary-fixed": "#e4e1e6",
+                      "bg-surface": "#FFFFFF",
+                      "on-secondary-fixed-variant": "#47464a",
+                      "gain-tint-border": "#B9EFE1",
+                      "on-error-container": "#93000a",
+                      "loss-tint-border": "#FECACA",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#f9f9f8",
+                      "loss-tint-bg": "#FEF2F2",
+                      "primary-fixed": "#7bf9ce",
+                      "info-tint-bg": "#EFF6FF",
+                      "surface-container-highest": "#e2e2e2",
+                      "secondary-container": "#e4e1e6",
+                      "tertiary": "#5e5e67",
+                      "warning": "#F59E0B",
+                      "on-secondary": "#ffffff",
+                      "border-subtle": "#F0F0EF",
+                      "outline-variant": "#bccac2",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#eeeeed",
+                      "surface-bright": "#f9f9f8",
+                      "info": "#2563EB",
+                      "surface-tint": "#006c52",
+                      "on-surface-variant": "#3d4a44",
+                      "text-muted": "#A1A1AA",
+                      "on-tertiary-fixed-variant": "#46464f",
+                      "surface-container-high": "#e8e8e7",
+                      "on-background": "#1a1c1c",
+                      "tertiary-container": "#94939d",
+                      "on-primary-fixed": "#002117",
+                      "on-primary-fixed-variant": "#00513d",
+                      "primary": "#006c52",
+                      "border-strong": "#D4D4D8",
+                      "secondary-fixed-dim": "#c8c5ca",
+                      "inverse-surface": "#2f3130",
+                      "inverse-on-surface": "#f1f1f0",
+                      "on-primary": "#ffffff",
+                      "gain": "#059669",
+                      "on-tertiary-fixed": "#1a1b23",
+                      "on-primary-container": "#003426",
+                      "outline": "#6d7a73",
+                      "error": "#ba1a1a",
+                      "on-error": "#ffffff",
+                      "surface-dim": "#dadad9",
+                      "gain-tint-bg": "#F0FBF7"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter-default": "10px",
+                      "metric-cell-py": "9px",
+                      "gutter-tight": "6px",
+                      "page-x": "24px",
+                      "metric-cell-px": "11px",
+                      "card-padding": "16px",
+                      "section-gap": "36px",
+                      "page-y": "28px"
+              },
+              "fontFamily": {
+                      "data-lg": [
+                              "JetBrains Mono"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "data-md": [
+                              "JetBrains Mono"
+                      ],
+                      "headline": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "data-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "caption": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display": [
+                              "22px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.4px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-caps": [
+                              "10px",
+                              {
+                                      "lineHeight": "12px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline": [
+                              "15px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Table specific styles for density */
+        .dense-table th, .dense-table td {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 12px;
+            padding-right: 12px;
+            white-space: nowrap;
+        }
+        
+        .dense-table th {
+            font-family: Inter, sans-serif;
+            font-size: 10px;
+            line-height: 12px;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #5f5e61; /* text-secondary */
+            border-bottom: 1px solid #E4E4E7; /* border-default */
+            background-color: #F4F4F5; /* bg-muted */
+        }
+        
+        .dense-table tr {
+            border-bottom: 1px solid #F0F0EF; /* border-subtle */
+        }
+        
+        .dense-table tr:hover {
+            background-color: #f9f9f8; /* bg-surface-bright */
+        }
+        
+        .data-cell {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            line-height: 16px;
+            font-weight: 600;
+            color: #1a1c1c; /* on-surface */
+            text-align: right;
+        }
+        
+        .label-cell {
+            font-family: Inter, sans-serif;
+            font-size: 13px;
+            line-height: 18px;
+            font-weight: 400;
+            color: #1a1c1c; /* on-surface */
+        }
+        
+        /* Sparkline CSS */
+        .sparkline {
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased h-screen flex overflow-hidden">
+<!-- Top Navigation Bar (Shared Component) -->
+<header class="fixed top-0 left-0 w-full flex justify-between items-center px-page-x h-14 bg-bg-surface border-b border-border-default z-50">
+<div class="flex items-center gap-6">
+<span class="text-headline font-headline font-bold text-primary">Quant Precision</span>
+<nav class="hidden md:flex gap-6">
+<!-- Highlight 'Dashboard' as nearest conceptual match or just generic active for demo -->
+<a class="text-secondary hover:text-on-surface transition-colors flex items-center h-14" href="#">Dashboard</a>
+<a class="text-secondary hover:text-on-surface transition-colors flex items-center h-14" href="#">Markets</a>
+<a class="text-secondary hover:text-on-surface transition-colors flex items-center h-14" href="#">Portfolio</a>
+<a class="text-primary border-b-2 border-primary pb-1 flex items-center h-14 mt-1" href="#">Screener</a>
+<a class="text-secondary hover:text-on-surface transition-colors flex items-center h-14" href="#">Research</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-secondary text-sm">search</span>
+<input class="pl-8 pr-3 py-1.5 bg-surface-container-low border border-border-default rounded-md text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-48 transition-all" placeholder="Search tickers, screens..." type="text"/>
+</div>
+<button class="text-secondary hover:bg-surface-container-low p-1.5 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-secondary hover:bg-surface-container-low p-1.5 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center overflow-hidden border border-border-default ml-2">
+<img class="w-full h-full object-cover" data-alt="Professional corporate headshot of a financial analyst, well-lit studio portrait, neutral background, sharp focus, conveying trust and expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqBwmoGaofCDWy_dl9bGxXr9ilw4zBNMfC6KkN7BqgaMeZURRK2LDjAcSUAXfBYUb9rRZxmRUH3su6DmzGNCzT8ReXRI1aDJAY1yFq5SDjHCtWqeiOJwms38Pvwj_Wr5JINk5xThkqOCA5FUnbJDTKQoPJP54LpiERwJQxw5dyD1ZGSengTX8ZwruVcGl1-YHlxAOifWpUrCpCwgLcvMcyWIE5vNasMDo0bmg9ivJskm_ISEVsPB2cL5hPb4klyLpmau-4oPKNwygO"/>
+</div>
+</div>
+</header>
+<!-- Main Layout Container -->
+<div class="flex w-full mt-14 h-[calc(100vh-56px)]">
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-background p-page-y px-page-x flex flex-col gap-section-gap">
+<!-- Page Header & Breadcrumbs -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center text-body-sm font-body-sm text-secondary gap-2">
+<span class="hover:text-primary cursor-pointer transition-colors">System</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Components</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-medium">Tables</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-display font-display text-on-surface">Data Tables &amp; Grid Systems</h1>
+<p class="text-body-md font-body-md text-secondary mt-1">High-density data visualization components for financial analysis.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 border border-border-default rounded text-body-sm font-body-sm hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">download</span> Export CSV
+                        </button>
+</div>
+</div>
+</div>
+<!-- Profit & Loss Statement Section -->
+<section class="flex flex-col gap-4">
+<h2 class="text-headline font-headline text-on-surface border-b border-border-strong pb-2">Profit &amp; Loss Statement (Expandable Grid)</h2>
+<div class="bg-bg-surface border border-border-default rounded-lg overflow-hidden flex flex-col shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left dense-table border-collapse">
+<thead>
+<tr>
+<th class="w-1/3 text-left">Line Item (Consolidated)</th>
+<th class="text-right">Mar 2022</th>
+<th class="text-right">Mar 2023</th>
+<th class="text-right">Mar 2024</th>
+<th class="text-right border-l border-border-default bg-surface-container-lowest">YoY %</th>
+</tr>
+</thead>
+<tbody>
+<!-- Revenue Row (Expandable Parent) -->
+<tr class="bg-surface-container-lowest font-medium cursor-pointer hover:bg-surface group">
+<td class="label-cell flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary transition-transform group-hover:text-primary">expand_more</span>
+                                        Total Revenue
+                                    </td>
+<td class="data-cell">24,580.50</td>
+<td class="data-cell">28,150.00</td>
+<td class="data-cell">32,450.25</td>
+<td class="data-cell border-l border-border-default text-gain bg-gain-tint-bg">+15.2%</td>
+</tr>
+<!-- Expanded Children -->
+<tr class="bg-bg-surface">
+<td class="label-cell pl-8 text-secondary">Product Sales</td>
+<td class="data-cell text-secondary">18,200.00</td>
+<td class="data-cell text-secondary">20,500.00</td>
+<td class="data-cell text-secondary">23,100.00</td>
+<td class="data-cell border-l border-border-default text-gain">+12.6%</td>
+</tr>
+<tr class="bg-bg-surface">
+<td class="label-cell pl-8 text-secondary">Services &amp; Subscriptions</td>
+<td class="data-cell text-secondary">6,380.50</td>
+<td class="data-cell text-secondary">7,650.00</td>
+<td class="data-cell text-secondary">9,350.25</td>
+<td class="data-cell border-l border-border-default text-gain">+22.2%</td>
+</tr>
+<!-- COGS -->
+<tr class="bg-surface-container-lowest font-medium border-t border-border-strong cursor-pointer hover:bg-surface group">
+<td class="label-cell flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary -rotate-90 transition-transform group-hover:text-primary">expand_more</span>
+                                        Cost of Goods Sold (COGS)
+                                    </td>
+<td class="data-cell">(12,400.00)</td>
+<td class="data-cell">(14,200.00)</td>
+<td class="data-cell">(15,850.00)</td>
+<td class="data-cell border-l border-border-default text-loss bg-loss-tint-bg">+11.6%</td>
+</tr>
+<!-- Gross Profit -->
+<tr class="bg-surface-container-low font-semibold border-y border-border-strong">
+<td class="label-cell">Gross Profit</td>
+<td class="data-cell">12,180.50</td>
+<td class="data-cell">13,950.00</td>
+<td class="data-cell">16,600.25</td>
+<td class="data-cell border-l border-border-default text-gain bg-gain-tint-bg">+19.0%</td>
+</tr>
+<!-- Operating Expenses (Expandable Parent) -->
+<tr class="bg-surface-container-lowest font-medium cursor-pointer hover:bg-surface group">
+<td class="label-cell flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary transition-transform group-hover:text-primary">expand_more</span>
+                                        Operating Expenses
+                                    </td>
+<td class="data-cell">(5,200.00)</td>
+<td class="data-cell">(6,100.00)</td>
+<td class="data-cell">(7,450.00)</td>
+<td class="data-cell border-l border-border-default text-loss bg-loss-tint-bg">+22.1%</td>
+</tr>
+<!-- Expanded Children -->
+<tr class="bg-bg-surface">
+<td class="label-cell pl-8 text-secondary">R&amp;D</td>
+<td class="data-cell text-secondary">(2,100.00)</td>
+<td class="data-cell text-secondary">(2,600.00)</td>
+<td class="data-cell text-secondary">(3,200.00)</td>
+<td class="data-cell border-l border-border-default text-loss">+23.0%</td>
+</tr>
+<tr class="bg-bg-surface">
+<td class="label-cell pl-8 text-secondary">SG&amp;A</td>
+<td class="data-cell text-secondary">(3,100.00)</td>
+<td class="data-cell text-secondary">(3,500.00)</td>
+<td class="data-cell text-secondary">(4,250.00)</td>
+<td class="data-cell border-l border-border-default text-loss">+21.4%</td>
+</tr>
+<!-- Operating Income -->
+<tr class="bg-surface-container-low font-semibold border-y border-border-strong">
+<td class="label-cell">Operating Income (EBIT)</td>
+<td class="data-cell">6,980.50</td>
+<td class="data-cell">7,850.00</td>
+<td class="data-cell">9,150.25</td>
+<td class="data-cell border-l border-border-default text-gain bg-gain-tint-bg">+16.5%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Stock Screener Section -->
+<section class="flex flex-col gap-4">
+<h2 class="text-headline font-headline text-on-surface border-b border-border-strong pb-2">Stock Screener (Dense Data &amp; Micro-charts)</h2>
+<div class="bg-bg-surface border border-border-default rounded-lg overflow-hidden flex flex-col shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left dense-table border-collapse">
+<thead>
+<tr>
+<th class="w-[40px] text-center pl-4"><input class="rounded border-border-default text-primary focus:ring-primary" type="checkbox"/></th>
+<th class="text-left w-[120px]">Ticker</th>
+<th class="text-left">Company</th>
+<th class="text-right">Price</th>
+<th class="text-right">1D %</th>
+<th class="text-center w-[100px]">30D Trend</th>
+<th class="text-right">Vol (M)</th>
+<th class="text-right">P/E</th>
+<th class="text-center">Signal</th>
+</tr>
+</thead>
+<tbody>
+<!-- AAPL -->
+<tr>
+<td class="text-center pl-4"><input class="rounded border-border-default text-primary focus:ring-primary" type="checkbox"/></td>
+<td>
+<div class="inline-flex items-center px-1.5 py-0.5 rounded bg-bg-muted border border-border-default">
+<span class="font-data-md text-data-md text-on-surface">AAPL</span>
+</div>
+</td>
+<td class="label-cell font-medium">Apple Inc.</td>
+<td class="data-cell">173.50</td>
+<td class="data-cell text-gain">+1.24%</td>
+<td class="text-center align-middle py-1">
+<svg class="inline-block" height="20" width="80">
+<path class="sparkline stroke-gain" d="M0,15 L10,12 L20,18 L30,10 L40,8 L50,14 L60,5 L70,2 L80,5"></path>
+</svg>
+</td>
+<td class="data-cell">45.2</td>
+<td class="data-cell">28.4</td>
+<td class="text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-gain-tint-bg border border-gain-tint-border text-gain text-caption font-caption uppercase font-semibold">Buy</span>
+</td>
+</tr>
+<!-- MSFT -->
+<tr>
+<td class="text-center pl-4"><input class="rounded border-border-default text-primary focus:ring-primary" type="checkbox"/></td>
+<td>
+<div class="inline-flex items-center px-1.5 py-0.5 rounded bg-bg-muted border border-border-default">
+<span class="font-data-md text-data-md text-on-surface">MSFT</span>
+</div>
+</td>
+<td class="label-cell font-medium">Microsoft Corp.</td>
+<td class="data-cell">415.20</td>
+<td class="data-cell text-gain">+0.85%</td>
+<td class="text-center align-middle py-1">
+<svg class="inline-block" height="20" width="80">
+<path class="sparkline stroke-gain" d="M0,18 L10,16 L20,12 L30,14 L40,8 L50,10 L60,4 L70,6 L80,2"></path>
+</svg>
+</td>
+<td class="data-cell">22.8</td>
+<td class="data-cell">36.1</td>
+<td class="text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-gain-tint-bg border border-gain-tint-border text-gain text-caption font-caption uppercase font-semibold">Buy</span>
+</td>
+</tr>
+<!-- TSLA -->
+<tr>
+<td class="text-center pl-4"><input class="rounded border-border-default text-primary focus:ring-primary" type="checkbox"/></td>
+<td>
+<div class="inline-flex items-center px-1.5 py-0.5 rounded bg-bg-muted border border-border-default">
+<span class="font-data-md text-data-md text-on-surface">TSLA</span>
+</div>
+</td>
+<td class="label-cell font-medium">Tesla Inc.</td>
+<td class="data-cell">175.22</td>
+<td class="data-cell text-loss">-3.45%</td>
+<td class="text-center align-middle py-1">
+<svg class="inline-block" height="20" width="80">
+<path class="sparkline stroke-loss" d="M0,5 L10,8 L20,4 L30,12 L40,10 L50,16 L60,14 L70,18 L80,16"></path>
+</svg>
+</td>
+<td class="data-cell">88.5</td>
+<td class="data-cell">42.8</td>
+<td class="text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-loss-tint-bg border border-loss-tint-border text-loss text-caption font-caption uppercase font-semibold">Sell</span>
+</td>
+</tr>
+<!-- NVDA -->
+<tr>
+<td class="text-center pl-4"><input class="rounded border-border-default text-primary focus:ring-primary" type="checkbox"/></td>
+<td>
+<div class="inline-flex items-center px-1.5 py-0.5 rounded bg-bg-muted border border-border-default">
+<span class="font-data-md text-data-md text-on-surface">NVDA</span>
+</div>
+</td>
+<td class="label-cell font-medium">NVIDIA Corp.</td>
+<td class="data-cell">880.08</td>
+<td class="data-cell text-secondary">0.00%</td>
+<td class="text-center align-middle py-1">
+<svg class="inline-block" height="20" width="80">
+<path class="sparkline stroke-warning" d="M0,10 L10,8 L20,12 L30,9 L40,11 L50,8 L60,12 L70,9 L80,10"></path>
+</svg>
+</td>
+<td class="data-cell">65.1</td>
+<td class="data-cell">75.4</td>
+<td class="text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-warning-tint-bg border border-warning-tint-border text-warning text-caption font-caption uppercase font-semibold">Hold</span>
+</td>
+</tr>
+<!-- AMD -->
+<tr>
+<td class="text-center pl-4"><input class="rounded border-border-default text-primary focus:ring-primary" type="checkbox"/></td>
+<td>
+<div class="inline-flex items-center px-1.5 py-0.5 rounded bg-bg-muted border border-border-default">
+<span class="font-data-md text-data-md text-on-surface">AMD</span>
+</div>
+</td>
+<td class="label-cell font-medium">Advanced Micro Devices</td>
+<td class="data-cell">165.40</td>
+<td class="data-cell text-gain">+2.10%</td>
+<td class="text-center align-middle py-1">
+<svg class="inline-block" height="20" width="80">
+<path class="sparkline stroke-gain" d="M0,16 L10,18 L20,10 L30,12 L40,6 L50,8 L60,4 L70,2 L80,4"></path>
+</svg>
+</td>
+<td class="data-cell">42.3</td>
+<td class="data-cell">312.5</td>
+<td class="text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-gain-tint-bg border border-gain-tint-border text-gain text-caption font-caption uppercase font-semibold">Buy</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="px-4 py-3 bg-surface-container-lowest border-t border-border-default flex items-center justify-between">
+<span class="text-caption font-caption text-secondary">Showing 1-5 of 240 results</span>
+<div class="flex gap-1">
+<button class="p-1 rounded hover:bg-surface-container-low text-secondary disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="px-2 py-1 rounded bg-primary-container text-on-primary-container text-body-sm font-medium">1</button>
+<button class="px-2 py-1 rounded hover:bg-surface-container-low text-secondary text-body-sm">2</button>
+<button class="px-2 py-1 rounded hover:bg-surface-container-low text-secondary text-body-sm">3</button>
+<span class="px-2 py-1 text-secondary">...</span>
+<button class="p-1 rounded hover:bg-surface-container-low text-secondary"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</section>
+<!-- Spacer for bottom scroll -->
+<div class="h-12"></div>
+</main>
+</div>
+<script>
+        // Simple row expansion logic for demo
+        document.querySelectorAll('tr.group').forEach(row => {
+            row.addEventListener('click', () => {
+                const icon = row.querySelector('.material-symbols-outlined');
+                if (icon.textContent === 'expand_more') {
+                    // This is a naive toggle for demo purposes
+                    if (icon.style.transform === 'rotate(-90deg)') {
+                         icon.style.transform = 'rotate(0deg)';
+                    } else {
+                         icon.style.transform = 'rotate(-90deg)';
+                    }
+                }
+            });
+        });
+    </script>
+</body></html>

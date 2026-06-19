@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Market Heatmap | EquityLens Terminal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "tertiary": "#5e5e67",
+                    "gain": "#059669",
+                    "tertiary-container": "#94939d",
+                    "primary-container": "#0ea882",
+                    "on-tertiary-container": "#2c2c34",
+                    "surface-container-high": "#e8e8e7",
+                    "gain-tint-border": "#B9EFE1",
+                    "border-strong": "#D4D4D8",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#eeeeed",
+                    "tertiary-fixed": "#e3e1ec",
+                    "primary-fixed": "#7bf9ce",
+                    "primary-fixed-dim": "#5cdcb3",
+                    "on-secondary": "#ffffff",
+                    "border-default": "#E4E4E7",
+                    "outline": "#6d7a73",
+                    "on-background": "#1a1c1c",
+                    "on-secondary-container": "#656467",
+                    "on-primary-fixed-variant": "#00513d",
+                    "on-secondary-fixed-variant": "#47464a",
+                    "on-error": "#ffffff",
+                    "loss-tint-border": "#FECACA",
+                    "background": "#f9f9f8",
+                    "secondary-fixed-dim": "#c8c5ca",
+                    "inverse-surface": "#2f3130",
+                    "border-subtle": "#F0F0EF",
+                    "on-surface-variant": "#3d4a44",
+                    "on-tertiary-fixed-variant": "#46464f",
+                    "surface-container-low": "#f3f4f3",
+                    "loss-tint-bg": "#FEF2F2",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#1a1c1c",
+                    "text-muted": "#A1A1AA",
+                    "tertiary-fixed-dim": "#c7c5d0",
+                    "secondary-container": "#e4e1e6",
+                    "loss": "#EF4444",
+                    "on-secondary-fixed": "#1b1b1e",
+                    "info-tint-border": "#BFDBFE",
+                    "on-primary-container": "#003426",
+                    "on-primary": "#ffffff",
+                    "secondary": "#5f5e61",
+                    "bg-muted": "#F4F4F5",
+                    "surface": "#f9f9f8",
+                    "outline-variant": "#bccac2",
+                    "bg-surface": "#FFFFFF",
+                    "warning": "#F59E0B",
+                    "warning-tint-bg": "#FFFBEB",
+                    "surface-tint": "#006c52",
+                    "surface-dim": "#dadad9",
+                    "inverse-primary": "#5cdcb3",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f9f9f8",
+                    "primary": "#006c52",
+                    "inverse-on-surface": "#f1f1f0",
+                    "on-primary-fixed": "#002117",
+                    "surface-variant": "#e2e2e2",
+                    "info": "#2563EB",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-tertiary-fixed": "#1a1b23",
+                    "gain-tint-bg": "#F0FBF7",
+                    "info-tint-bg": "#EFF6FF",
+                    "warning-tint-border": "#FDE68A",
+                    "secondary-fixed": "#e4e1e6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter-tight": "6px",
+                    "page-x": "24px",
+                    "card-padding": "16px",
+                    "page-y": "28px",
+                    "metric-cell-px": "11px",
+                    "gutter-default": "10px",
+                    "section-gap": "36px",
+                    "metric-cell-py": "9px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "data-lg": ["JetBrains Mono"],
+                    "label-caps": ["Inter"],
+                    "caption": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display": ["Inter"],
+                    "data-md": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline": ["15px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "data-lg": ["20px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "caption": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display": ["22px", {"lineHeight": "32px", "letterSpacing": "-0.4px", "fontWeight": "600"}],
+                    "data-md": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(8, 60px);
+            gap: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D4D4D8;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-page-x h-14 bg-bg-surface border-b border-border-subtle">
+<div class="flex items-center gap-8">
+<span class="font-headline text-headline font-bold text-primary">EquityLens</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary border-b-2 border-primary pb-1 font-headline text-headline" href="#">Markets</a>
+<a class="text-secondary font-headline text-headline hover:bg-bg-muted transition-colors px-2 py-1 rounded" href="#">Portfolio</a>
+<a class="text-secondary font-headline text-headline hover:bg-bg-muted transition-colors px-2 py-1 rounded" href="#">Research</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center bg-bg-muted px-3 py-1.5 rounded-lg border border-border-default">
+<span class="material-symbols-outlined text-secondary text-[20px] mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-48" placeholder="Search Ticker..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 hover:bg-bg-muted rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-secondary">notifications</span>
+</button>
+<button class="p-1.5 hover:bg-bg-muted rounded-full transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-secondary">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-border-default">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a corporate financial analyst looking confident. The background is a clean, modern office environment with soft bokeh, using a cool blue and gray color palette. Lighting is soft and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD92UPGsl9w2-T0afft8KKAzkEoXYf2e45pNry-Jzf72iDFIs_lcueREwnpFu0Ds0UmaKpH1H_34i8zVTB8I_LD4TNZFdT0OH_1IRFe5e4X6rcGzNisKwmceW3QFX8ntt6nga5ZCtdL6_f9KJzr9pCcn9as7KMW0vRUb29t-UIlz-zJNbNxwJHyRXmkX7QlJxKcThOhivRecqlsbOG9OaMquFk-S4-nvYCdWKuRMvpL1TGZvtPnW6NzTVOZYs_5jFzSpPf5AdJ4kJDY"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-14 h-[calc(100vh-3.5rem)] flex flex-col p-gutter-default w-64 bg-surface border-r border-border-subtle z-40 hidden md:flex">
+<div class="mb-6 px-3">
+<span class="font-headline text-headline font-bold text-primary block">Terminal</span>
+<span class="text-caption text-secondary">Institutional Access</span>
+</div>
+<nav class="space-y-1 flex-1">
+<div class="text-secondary hover:bg-bg-muted transition-all flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</div>
+<div class="text-secondary hover:bg-bg-muted transition-all flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-body-md">Portfolio</span>
+</div>
+<div class="text-secondary hover:bg-bg-muted transition-all flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">filter_alt</span>
+<span class="font-body-md">Screener</span>
+</div>
+<div class="bg-primary-container text-on-primary-container font-bold rounded-lg flex items-center gap-3 px-3 py-2 cursor-pointer">
+<span class="material-symbols-outlined">show_chart</span>
+<span class="font-body-md">Markets</span>
+</div>
+<div class="text-secondary hover:bg-bg-muted transition-all flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-md">Research</span>
+</div>
+<div class="text-secondary hover:bg-bg-muted transition-all flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">visibility</span>
+<span class="font-body-md">Watchlists</span>
+</div>
+</nav>
+<div class="mt-auto space-y-1 pt-4 border-t border-border-subtle">
+<button class="w-full bg-primary text-on-primary font-headline py-2 rounded-lg mb-4 active:scale-95 transition-transform">
+                New Analysis
+            </button>
+<div class="text-secondary hover:bg-bg-muted transition-all flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-body-md">Support</span>
+</div>
+<div class="text-secondary hover:bg-bg-muted transition-all flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">code</span>
+<span class="font-body-md">API</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 mt-14 p-page-x h-[calc(100vh-3.5rem)] overflow-y-auto custom-scrollbar">
+<!-- Page Header & Filters -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-section-gap">
+<div>
+<h1 class="font-display text-display text-on-surface mb-1">Market Heatmap</h1>
+<p class="text-secondary text-body-md">Sectoral performance visualization across the Nifty 50 ecosystem.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<!-- Index Filter -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Index</span>
+<select class="bg-bg-surface border-border-default rounded-lg text-body-sm px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary min-w-[140px]">
+<option>Nifty 50</option>
+<option>Nifty Next 50</option>
+<option>Bank Nifty</option>
+</select>
+</div>
+<!-- Timeframe Filter -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Timeframe</span>
+<div class="flex bg-bg-muted p-1 rounded-lg border border-border-default">
+<button class="px-3 py-1 text-body-sm rounded bg-bg-surface shadow-sm font-bold text-primary">1D</button>
+<button class="px-3 py-1 text-body-sm rounded hover:bg-white/50 text-secondary">1W</button>
+<button class="px-3 py-1 text-body-sm rounded hover:bg-white/50 text-secondary">1M</button>
+</div>
+</div>
+<!-- Market Cap Filter -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Map By</span>
+<select class="bg-bg-surface border-border-default rounded-lg text-body-sm px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary min-w-[140px]">
+<option>Market Cap</option>
+<option>Volume</option>
+<option>PE Ratio</option>
+</select>
+</div>
+<button class="mt-auto p-2 bg-bg-surface border border-border-default rounded-lg hover:bg-bg-muted transition-colors flex items-center">
+<span class="material-symbols-outlined text-secondary">download</span>
+</button>
+</div>
+</div>
+<!-- Heatmap Layout -->
+<div class="bg-bg-surface border border-border-default rounded-xl p-card-padding shadow-sm relative overflow-hidden">
+<!-- Background Decoration / Grid Overlay -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#006c52 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="heatmap-grid relative z-10">
+<!-- IT Sector (Large Positive) -->
+<div class="col-span-5 row-span-5 bg-gain-tint-bg border border-gain-tint-border rounded-lg p-3 group hover:border-gain transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline text-headline text-gain">Information Tech</span>
+<span class="font-data-md text-data-md text-gain">+2.45%</span>
+</div>
+<div class="space-y-2 mt-4">
+<div class="flex justify-between items-center bg-white/40 p-1.5 rounded">
+<span class="font-data-md text-[11px] text-on-surface">TCS</span>
+<span class="font-data-md text-[11px] text-gain">+3.1%</span>
+</div>
+<div class="flex justify-between items-center bg-white/40 p-1.5 rounded">
+<span class="font-data-md text-[11px] text-on-surface">INFY</span>
+<span class="font-data-md text-[11px] text-gain">+2.2%</span>
+</div>
+<div class="flex justify-between items-center bg-white/40 p-1.5 rounded">
+<span class="font-data-md text-[11px] text-on-surface">HCLTECH</span>
+<span class="font-data-md text-[11px] text-gain">+1.8%</span>
+</div>
+</div>
+</div>
+<!-- Banking Sector (Large Negative) -->
+<div class="col-span-4 row-span-4 bg-loss-tint-bg border border-loss-tint-border rounded-lg p-3 group hover:border-loss transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-headline text-headline text-loss">Banking</span>
+<span class="font-data-md text-data-md text-loss">-1.12%</span>
+</div>
+<div class="space-y-2 mt-4">
+<div class="flex justify-between items-center bg-white/40 p-1.5 rounded">
+<span class="font-data-md text-[11px] text-on-surface">HDFC</span>
+<span class="font-data-md text-[11px] text-loss">-0.8%</span>
+</div>
+<div class="flex justify-between items-center bg-white/40 p-1.5 rounded">
+<span class="font-data-md text-[11px] text-on-surface">ICICI</span>
+<span class="font-data-md text-[11px] text-loss">-1.4%</span>
+</div>
+</div>
+</div>
+<!-- Pharma (Medium Positive) -->
+<div class="col-span-3 row-span-3 bg-gain-tint-bg border border-gain-tint-border rounded-lg p-3 group hover:border-gain transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="font-headline text-headline text-gain">Pharma</span>
+<span class="font-data-md text-data-md text-gain">+0.85%</span>
+</div>
+<div class="mt-4">
+<div class="flex justify-between items-center bg-white/40 p-1.5 rounded">
+<span class="font-data-md text-[11px] text-on-surface">SUN</span>
+<span class="font-data-md text-[11px] text-gain">+1.2%</span>
+</div>
+</div>
+</div>
+<!-- Auto (Medium Negative) -->
+<div class="col-span-3 row-span-3 bg-loss-tint-bg border border-loss-tint-border rounded-lg p-3 group hover:border-loss transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="font-headline text-headline text-loss">Automobile</span>
+<span class="font-data-md text-data-md text-loss">-0.95%</span>
+</div>
+</div>
+<!-- FMCG (Small Neutral/Positive) -->
+<div class="col-span-4 row-span-2 bg-gain-tint-bg border border-gain-tint-border opacity-80 rounded-lg p-3 group hover:border-gain transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="font-headline text-headline text-gain">FMCG</span>
+<span class="font-data-md text-data-md text-gain">+0.12%</span>
+</div>
+</div>
+<!-- Energy (Large Positive) -->
+<div class="col-span-5 row-span-3 bg-gain-tint-bg border border-gain-tint-border rounded-lg p-3 group hover:border-gain transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<span class="font-headline text-headline text-gain">Energy &amp; Oil</span>
+<span class="font-data-md text-data-md text-gain">+3.10%</span>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-4">
+<div class="bg-white/40 p-1.5 rounded flex flex-col">
+<span class="font-label-caps text-[9px] text-secondary">RELIANCE</span>
+<span class="font-data-md text-[12px] text-gain">+4.2%</span>
+</div>
+<div class="bg-white/40 p-1.5 rounded flex flex-col">
+<span class="font-label-caps text-[9px] text-secondary">ONGC</span>
+<span class="font-data-md text-[12px] text-gain">+1.5%</span>
+</div>
+</div>
+</div>
+<!-- Metal (Small Negative) -->
+<div class="col-span-3 row-span-2 bg-loss-tint-bg border border-loss-tint-border opacity-70 rounded-lg p-3 group hover:border-loss transition-all cursor-pointer">
+<span class="font-headline text-headline text-loss">Metal</span>
+<span class="font-data-md text-data-md text-loss block">-0.4%</span>
+</div>
+<!-- Realty (Smallest) -->
+<div class="col-span-2 row-span-1 bg-gain-tint-bg border border-gain-tint-border opacity-60 rounded-lg flex items-center justify-center cursor-pointer">
+<span class="font-label-caps text-[9px] text-gain">+0.2%</span>
+</div>
+<!-- Media (Smallest) -->
+<div class="col-span-2 row-span-1 bg-loss-tint-bg border border-loss-tint-border opacity-60 rounded-lg flex items-center justify-center cursor-pointer">
+<span class="font-label-caps text-[9px] text-loss">-0.1%</span>
+</div>
+</div>
+<!-- Performance Legend -->
+<div class="mt-8 pt-6 border-t border-border-subtle flex items-center justify-between">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-secondary">Performance</span>
+<div class="flex h-2.5 w-48 rounded-full overflow-hidden border border-border-default">
+<div class="bg-loss w-1/4"></div>
+<div class="bg-loss-tint-bg w-1/4"></div>
+<div class="bg-gain-tint-bg w-1/4"></div>
+<div class="bg-gain w-1/4"></div>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-gain"></div>
+<span class="text-caption text-secondary">High Gain (&gt;2%)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-loss"></div>
+<span class="text-caption text-secondary">High Loss (&lt;-2%)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 text-secondary text-caption">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                    Data delayed by 15 mins
+                </div>
+</div>
+</div>
+<!-- Metric Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter-default mt-section-gap">
+<div class="bg-bg-muted border border-border-default rounded-lg p-card-padding">
+<span class="text-caption text-secondary block mb-1">Market Sentiment</span>
+<div class="flex items-end justify-between">
+<span class="font-headline text-headline text-gain font-bold">BULLISH</span>
+<span class="font-data-md text-data-md text-gain">68.4%</span>
+</div>
+</div>
+<div class="bg-bg-muted border border-border-default rounded-lg p-card-padding">
+<span class="text-caption text-secondary block mb-1">Advancers/Decliners</span>
+<div class="flex items-end justify-between">
+<span class="font-headline text-headline text-on-surface">32 / 18</span>
+<span class="font-data-md text-data-md text-secondary">Nifty 50</span>
+</div>
+</div>
+<div class="bg-bg-muted border border-border-default rounded-lg p-card-padding">
+<span class="text-caption text-secondary block mb-1">Volatilty Index (VIX)</span>
+<div class="flex items-end justify-between">
+<span class="font-headline text-headline text-on-surface">14.28</span>
+<span class="font-data-md text-data-md text-loss">-2.1%</span>
+</div>
+</div>
+<div class="bg-bg-muted border border-border-default rounded-lg p-card-padding">
+<span class="text-caption text-secondary block mb-1">Top Sector Contributor</span>
+<div class="flex items-end justify-between">
+<span class="font-headline text-headline text-on-surface">IT Services</span>
+<span class="font-data-md text-data-md text-gain">+42 pts</span>
+</div>
+</div>
+</div>
+<!-- Detail Table Area (Bento Layout Style) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-section-gap pb-12">
+<!-- Top Gaining Stocks -->
+<div class="lg:col-span-2 bg-bg-surface border border-border-default rounded-xl overflow-hidden">
+<div class="px-card-padding py-3 border-b border-border-subtle flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline text-headline">Sector Movers</h3>
+<button class="text-primary text-caption font-bold hover:underline">View All</button>
+</div>
+<table class="w-full text-left">
+<thead class="bg-bg-muted/50 border-b border-border-subtle">
+<tr>
+<th class="px-card-padding py-2 font-label-caps text-label-caps text-secondary">TICKER</th>
+<th class="px-card-padding py-2 font-label-caps text-label-caps text-secondary text-right">PRICE</th>
+<th class="px-card-padding py-2 font-label-caps text-label-caps text-secondary text-right">CHANGE</th>
+<th class="px-card-padding py-2 font-label-caps text-label-caps text-secondary text-right">VOLUME</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<tr class="hover:bg-bg-muted transition-colors cursor-pointer group">
+<td class="px-card-padding py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-gain-tint-bg border border-gain-tint-border flex items-center justify-center font-data-md text-gain text-[10px]">TCS</div>
+<div>
+<div class="font-headline text-body-sm">Tata Consultancy</div>
+<div class="text-[10px] text-secondary">IT Services</div>
+</div>
+</div>
+</td>
+<td class="px-card-padding py-3 text-right font-data-md text-body-sm">3,492.10</td>
+<td class="px-card-padding py-3 text-right font-data-md text-body-sm text-gain">+3.12%</td>
+<td class="px-card-padding py-3 text-right font-data-md text-body-sm text-secondary">2.1M</td>
+</tr>
+<tr class="hover:bg-bg-muted transition-colors cursor-pointer group">
+<td class="px-card-padding py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-gain-tint-bg border border-gain-tint-border flex items-center justify-center font-data-md text-gain text-[10px]">RELI</div>
+<div>
+<div class="font-headline text-body-sm">Reliance Industries</div>
+<div class="text-[10px] text-secondary">Energy</div>
+</div>
+</div>
+</td>
+<td class="px-card-padding py-3 text-right font-data-md text-body-sm">2,510.45</td>
+<td class="px-card-padding py-3 text-right font-data-md text-body-sm text-gain">+4.21%</td>
+<td class="px-card-padding py-3 text-right font-data-md text-body-sm text-secondary">8.4M</td>
+</tr>
+<tr class="hover:bg-bg-muted transition-colors cursor-pointer group">
+<td class="px-card-padding py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-loss-tint-bg border border-loss-tint-border flex items-center justify-center font-data-md text-loss text-[10px]">ICIC</div>
+<div>
+<div class="font-headline text-body-sm">ICICI Bank</div>
+<div class="text-[10px] text-secondary">Banking</div>
+</div>
+</div>
+</td>
+<td class="px-card-padding py-3 text-right font-data-md text-body-sm">942.00</td>
+<td class="px-card-padding py-3 text-right font-data-md text-body-sm text-loss">-1.45%</td>
+<td class="px-card-padding py-3 text-right font-data-md text-body-sm text-secondary">12.2M</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- News & Insights -->
+<div class="lg:col-span-1 bg-bg-surface border border-border-default rounded-xl overflow-hidden">
+<div class="px-card-padding py-3 border-b border-border-subtle bg-surface-container-low">
+<h3 class="font-headline text-headline">Market Pulse</h3>
+</div>
+<div class="p-card-padding space-y-4">
+<div class="group cursor-pointer">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-1.5 py-0.5 rounded bg-info-tint-bg text-info text-[9px] font-bold border border-info-tint-border">ECONOMY</span>
+<span class="text-caption text-secondary">12m ago</span>
+</div>
+<h4 class="font-headline text-body-sm group-hover:text-primary transition-colors">RBI maintains status quo on repo rates, analysts bullish on banks.</h4>
+</div>
+<div class="group cursor-pointer">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-1.5 py-0.5 rounded bg-gain-tint-bg text-gain text-[9px] font-bold border border-gain-tint-border">TECH</span>
+<span class="text-caption text-secondary">45m ago</span>
+</div>
+<h4 class="font-headline text-body-sm group-hover:text-primary transition-colors">IT sector sees massive volume surge following US earnings season.</h4>
+</div>
+<div class="group cursor-pointer">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-1.5 py-0.5 rounded bg-warning-tint-bg text-warning text-[9px] font-bold border border-warning-tint-border">REGULATORY</span>
+<span class="text-caption text-secondary">2h ago</span>
+</div>
+<h4 class="font-headline text-body-sm group-hover:text-primary transition-colors">New environmental norms likely to impact smelting margins in metal sector.</h4>
+</div>
+</div>
+<div class="px-card-padding py-4 mt-auto">
+<div class="p-3 bg-bg-muted rounded-lg border border-border-subtle flex items-center justify-between">
+<div>
+<span class="block text-caption text-secondary">Market Health</span>
+<span class="font-headline text-body-sm text-on-surface">Stable Trend</span>
+</div>
+<span class="material-symbols-outlined text-gain">trending_up</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation Shell (Suppressed on large) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-bg-surface border-t border-border-subtle flex justify-around items-center h-16 z-50">
+<div class="flex flex-col items-center justify-center text-secondary">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-headline">Dash</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary">
+<span class="material-symbols-outlined">show_chart</span>
+<span class="text-[10px] font-headline font-bold">Markets</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-headline">Folio</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary">
+<span class="material-symbols-outlined">search</span>
+<span class="text-[10px] font-headline">Search</span>
+</div>
+</nav>
+<script>
+        // Simple interactivity for the heatmap tiles
+        document.querySelectorAll('.heatmap-grid > div').forEach(tile => {
+            tile.addEventListener('mouseenter', () => {
+                tile.style.transform = 'translateY(-2px)';
+                tile.style.boxShadow = '0 10px 20px -5px rgba(0,0,0,0.05)';
+            });
+            tile.addEventListener('mouseleave', () => {
+                tile.style.transform = 'translateY(0)';
+                tile.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body></html>

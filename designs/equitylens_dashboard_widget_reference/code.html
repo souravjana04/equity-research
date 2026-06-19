@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quant Precision - Dashboard Widgets</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#5f5e61",
+                        "background": "#f9f9f8",
+                        "on-secondary-container": "#656467",
+                        "loss": "#EF4444",
+                        "info-tint-border": "#BFDBFE",
+                        "on-surface": "#1a1c1c",
+                        "bg-muted": "#F4F4F5",
+                        "warning-tint-bg": "#FFFBEB",
+                        "tertiary-fixed": "#e3e1ec",
+                        "warning-tint-border": "#FDE68A",
+                        "surface-variant": "#e2e2e2",
+                        "primary-container": "#0ea882",
+                        "tertiary-fixed-dim": "#c7c5d0",
+                        "on-secondary-fixed": "#1b1b1e",
+                        "on-tertiary-container": "#2c2c34",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#5cdcb3",
+                        "inverse-primary": "#5cdcb3",
+                        "surface-container-low": "#f3f4f3",
+                        "border-default": "#E4E4E7",
+                        "secondary-fixed": "#e4e1e6",
+                        "bg-surface": "#FFFFFF",
+                        "on-secondary-fixed-variant": "#47464a",
+                        "gain-tint-border": "#B9EFE1",
+                        "on-error-container": "#93000a",
+                        "loss-tint-border": "#FECACA",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9f8",
+                        "loss-tint-bg": "#FEF2F2",
+                        "primary-fixed": "#7bf9ce",
+                        "info-tint-bg": "#EFF6FF",
+                        "surface-container-highest": "#e2e2e2",
+                        "secondary-container": "#e4e1e6",
+                        "tertiary": "#5e5e67",
+                        "warning": "#F59E0B",
+                        "on-secondary": "#ffffff",
+                        "border-subtle": "#F0F0EF",
+                        "outline-variant": "#bccac2",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#eeeeed",
+                        "surface-bright": "#f9f9f8",
+                        "info": "#2563EB",
+                        "surface-tint": "#006c52",
+                        "on-surface-variant": "#3d4a44",
+                        "text-muted": "#A1A1AA",
+                        "on-tertiary-fixed-variant": "#46464f",
+                        "surface-container-high": "#e8e8e7",
+                        "on-background": "#1a1c1c",
+                        "tertiary-container": "#94939d",
+                        "on-primary-fixed": "#002117",
+                        "on-primary-fixed-variant": "#00513d",
+                        "primary": "#006c52",
+                        "border-strong": "#D4D4D8",
+                        "secondary-fixed-dim": "#c8c5ca",
+                        "inverse-surface": "#2f3130",
+                        "inverse-on-surface": "#f1f1f0",
+                        "on-primary": "#ffffff",
+                        "gain": "#059669",
+                        "on-tertiary-fixed": "#1a1b23",
+                        "on-primary-container": "#003426",
+                        "outline": "#6d7a73",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#dadad9",
+                        "gain-tint-bg": "#F0FBF7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter-default": "10px",
+                        "metric-cell-py": "9px",
+                        "gutter-tight": "6px",
+                        "page-x": "24px",
+                        "metric-cell-px": "11px",
+                        "card-padding": "16px",
+                        "section-gap": "36px",
+                        "page-y": "28px"
+                    },
+                    "fontFamily": {
+                        "data-lg": ["JetBrains Mono"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "data-md": ["JetBrains Mono"],
+                        "headline": ["Inter"]
+                    },
+                    "fontSize": {
+                        "data-lg": ["20px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "caption": ["11px", { "lineHeight": "14px", "fontWeight": "400" }],
+                        "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "display": ["22px", { "lineHeight": "32px", "letterSpacing": "-0.4px", "fontWeight": "600" }],
+                        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "label-caps": ["10px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "data-md": ["13px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "headline": ["15px", { "lineHeight": "20px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md">
+<!-- TopNavBar (Shared Component) -->
+<nav class="flex justify-between items-center w-full px-page-x h-14 bg-bg-surface dark:bg-surface border-b border-border-default dark:border-outline-variant flat no shadows docked full-width top-0 z-50">
+<div class="flex items-center gap-8">
+<span class="text-headline font-headline font-bold text-primary dark:text-primary-fixed-dim">Quant Precision</span>
+<div class="hidden md:flex gap-6 items-center h-full">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 h-full flex items-center mt-1" href="#">Dashboard</a>
+<a class="text-secondary dark:text-on-secondary-fixed-variant hover:text-on-surface dark:hover:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors h-full flex items-center px-2" href="#">Markets</a>
+<a class="text-secondary dark:text-on-secondary-fixed-variant hover:text-on-surface dark:hover:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors h-full flex items-center px-2" href="#">Portfolio</a>
+<a class="text-secondary dark:text-on-secondary-fixed-variant hover:text-on-surface dark:hover:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors h-full flex items-center px-2" href="#">Screener</a>
+<a class="text-secondary dark:text-on-secondary-fixed-variant hover:text-on-surface dark:hover:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors h-full flex items-center px-2" href="#">Research</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-secondary text-sm">search</span>
+<input class="pl-8 pr-3 py-1.5 bg-surface-container-low border border-border-default rounded text-body-sm focus:border-strong focus:outline-none focus:ring-0 w-64 transition-colors" placeholder="Search ticker or SEC filing..." type="text"/>
+</div>
+<button class="p-1.5 text-secondary hover:text-on-surface rounded hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-1.5 text-secondary hover:text-on-surface rounded hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="Analyst Profile" class="w-8 h-8 rounded-full border border-border-default object-cover" data-alt="A small circular profile picture of a professional financial analyst in a modern office setting. Light mode aesthetic, sharp focus, corporate attire. The lighting is bright and even, conveying trust and expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhYMkGkr9k8DA1f9vMB7dyNDjDL8XmAczYlRY4szUTGND9b5_5NFMRIJ1uId_vrXpx6afrwynwst-8BomOdQIe0MJd82SqsHIlAoCTRfrKlnxV3J4APj2acusyxKQHDkKkNpLGyMcgQrendaReGJiFrfbSGCk5wgNLEsrjTfaCC3mcErwvZx6aulR4J2SuQwqSJmopUDNjfZVLXLK61HkzZMzbdtSNyeIVoYN-iTgCaXqlZsYPC65DsPmDGLsuCaQERwDV8wsK6ADS"/>
+</div>
+</nav>
+<!-- Main Content Layout -->
+<div class="flex h-[calc(100vh-3.5rem)]">
+<!-- SideNavBar (Shared Component) -->
+<aside class="hidden md:flex flex-col h-full w-64 p-4 gap-2 border-r border-border-default dark:border-outline-variant bg-surface-container-lowest dark:bg-surface-container-low docked left-0 flat no shadows shrink-0 overflow-y-auto">
+<div class="mb-6 px-2">
+<div class="flex items-center gap-3 mb-1">
+<img alt="Equity Research Logo" class="w-6 h-6 rounded" data-alt="A clean, minimalist abstract geometric logo design for an equity research firm. High contrast black and primary green elements on a stark white background. Modern, sharp lines, corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4Kwuy5haPgBgFiSPgFnyv3rpkIVwSM5RVaGy_f5nZMz1Gp_-Ls6prHjVcJZHGM27wipnKphGNmC-KTzAwKssjCJ1tvyWIA6ZhcrXRJ7CC17yuS0grYUrjB2lnO2pDZkmGhhIsHxyigI5lvz6JDBKBi3airba8zIfkNczkpcAsbLlWp54zuRWpTJDI14UE9lr5lQ0aAlI_w5JdZUmFO_V6Vl-so5i3gtQVcXa6gd3_jfIwfV2AAB4J_d9bGm86jqLP4iNr8hKyCjTY"/>
+<span class="text-body-md font-body-md font-bold text-on-surface dark:text-on-surface-variant">Research Terminal</span>
+</div>
+<div class="text-label-caps font-label-caps text-secondary pl-9 uppercase tracking-wider">Institutional Grade</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 bg-primary-container text-on-primary-container dark:bg-primary-fixed-dim dark:text-on-primary-fixed rounded-lg font-bold scale-[0.99] transition-transform duration-100" href="#">
+<span class="material-symbols-outlined text-[20px]">terminal</span>
+<span class="text-body-sm font-body-sm">Terminal</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">list_alt</span>
+<span class="text-body-sm font-body-sm">Watchlists</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<span class="text-body-sm font-body-sm">Filings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="text-body-sm font-body-sm">Models</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container dark:hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">notifications_active</span>
+<span class="text-body-sm font-body-sm">Alerts</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-border-default flex flex-col gap-2">
+<button class="w-full py-2 px-4 bg-primary text-on-primary rounded font-body-sm hover:bg-surface-tint transition-colors text-center">Export Data</button>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="text-body-sm font-body-sm">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">code</span>
+<span class="text-body-sm font-body-sm">API</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto p-page-x bg-background">
+<!-- Page Header & Breadcrumbs -->
+<div class="mb-section-gap">
+<div class="flex items-center gap-2 text-caption font-caption text-secondary mb-2">
+<a class="hover:text-primary transition-colors" href="#">System</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Components</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface">Widgets</span>
+</div>
+<h1 class="text-display font-display text-on-surface">Dashboard Widget Cards</h1>
+<p class="text-body-md font-body-md text-secondary mt-1">Standalone reference implementations for high-density analytical widgets.</p>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-default">
+<!-- Row 1: Quick Metrics -->
+<div class="lg:col-span-12 grid grid-cols-1 md:grid-cols-4 gap-gutter-default mb-4">
+<!-- Metric 1: Nifty 50 -->
+<div class="bg-bg-surface border border-border-default rounded-DEFAULT p-card-padding flex flex-col justify-between">
+<div class="flex justify-between items-start mb-3">
+<span class="text-label-caps font-label-caps text-secondary uppercase tracking-wider">Nifty 50</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">show_chart</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-data-lg font-data-lg text-on-surface">22,514.65</span>
+<span class="text-data-md font-data-md text-gain bg-gain-tint-bg border border-gain-tint-border px-1.5 py-0.5 rounded text-[11px]">+1.24%</span>
+</div>
+</div>
+<!-- Metric 2: Sensex -->
+<div class="bg-bg-surface border border-border-default rounded-DEFAULT p-card-padding flex flex-col justify-between">
+<div class="flex justify-between items-start mb-3">
+<span class="text-label-caps font-label-caps text-secondary uppercase tracking-wider">Sensex</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">show_chart</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-data-lg font-data-lg text-on-surface">74,228.02</span>
+<span class="text-data-md font-data-md text-gain bg-gain-tint-bg border border-gain-tint-border px-1.5 py-0.5 rounded text-[11px]">+1.15%</span>
+</div>
+</div>
+<!-- Metric 3: Bank Nifty -->
+<div class="bg-bg-surface border border-border-default rounded-DEFAULT p-card-padding flex flex-col justify-between">
+<div class="flex justify-between items-start mb-3">
+<span class="text-label-caps font-label-caps text-secondary uppercase tracking-wider">Bank Nifty</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">show_chart</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-data-lg font-data-lg text-on-surface">48,159.00</span>
+<span class="text-data-md font-data-md text-loss bg-loss-tint-bg border border-loss-tint-border px-1.5 py-0.5 rounded text-[11px]">-0.45%</span>
+</div>
+</div>
+<!-- Metric 4: VIX -->
+<div class="bg-bg-surface border border-border-default rounded-DEFAULT p-card-padding flex flex-col justify-between">
+<div class="flex justify-between items-start mb-3">
+<span class="text-label-caps font-label-caps text-secondary uppercase tracking-wider">India VIX</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">water_drop</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-data-lg font-data-lg text-on-surface">11.55</span>
+<span class="text-data-md font-data-md text-secondary bg-bg-muted border border-border-subtle px-1.5 py-0.5 rounded text-[11px]">Flat</span>
+</div>
+</div>
+</div>
+<!-- Row 2: Complex Widgets -->
+<!-- Portfolio Allocation (Donut Chart) -->
+<div class="lg:col-span-4 bg-bg-surface border border-border-default rounded-DEFAULT p-card-padding flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-headline font-headline text-on-surface">Portfolio Allocation</h3>
+<button class="text-secondary hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center relative">
+<!-- Simulated SVG Donut Chart -->
+<svg class="w-48 h-48 mb-4 transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background ring -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#F4F4F5" stroke-width="15"></circle>
+<!-- Financials (45%) -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#006c52" stroke-dasharray="251.2" stroke-dashoffset="138.16" stroke-width="15"></circle>
+<!-- IT (25%) -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#0ea882" stroke-dasharray="251.2" stroke-dashoffset="188.4" stroke-width="15" transform="rotate(162 50 50)"></circle>
+<!-- Energy (20%) -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#7bf9ce" stroke-dasharray="251.2" stroke-dashoffset="200.96" stroke-width="15" transform="rotate(252 50 50)"></circle>
+<!-- Other (10%) -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#E4E4E7" stroke-dasharray="251.2" stroke-dashoffset="226.08" stroke-width="15" transform="rotate(324 50 50)"></circle>
+</svg>
+<!-- Center Text -->
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-4">
+<span class="text-label-caps font-label-caps text-secondary">TOTAL AUM</span>
+<span class="text-data-lg font-data-lg text-on-surface">$12.4M</span>
+</div>
+<!-- Legend -->
+<div class="w-full grid grid-cols-2 gap-y-2 gap-x-4 mt-auto">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-sm bg-primary"></div>
+<span class="text-caption font-caption text-secondary flex-1">Financials</span>
+<span class="text-data-md font-data-md text-on-surface text-[11px]">45%</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-sm bg-primary-container"></div>
+<span class="text-caption font-caption text-secondary flex-1">Technology</span>
+<span class="text-data-md font-data-md text-on-surface text-[11px]">25%</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-sm bg-primary-fixed"></div>
+<span class="text-caption font-caption text-secondary flex-1">Energy</span>
+<span class="text-data-md font-data-md text-on-surface text-[11px]">20%</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-sm bg-border-default"></div>
+<span class="text-caption font-caption text-secondary flex-1">Other</span>
+<span class="text-data-md font-data-md text-on-surface text-[11px]">10%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Top Gainers / Losers (Bar Indicators) -->
+<div class="lg:col-span-5 bg-bg-surface border border-border-default rounded-DEFAULT p-card-padding flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-headline font-headline text-on-surface">Movers (S&amp;P 500)</h3>
+<div class="flex gap-2">
+<button class="text-caption font-caption px-2 py-1 bg-surface-container-low rounded border border-border-default text-on-surface">Gainers</button>
+<button class="text-caption font-caption px-2 py-1 text-secondary hover:bg-surface-container-lowest rounded transition-colors">Losers</button>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Item 1 -->
+<div class="flex items-center gap-3">
+<div class="w-12 text-data-md font-data-md text-on-surface">NVDA</div>
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gain w-[85%] rounded-full"></div>
+</div>
+<div class="w-16 text-right text-data-md font-data-md text-gain">+4.2%</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-3">
+<div class="w-12 text-data-md font-data-md text-on-surface">META</div>
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gain w-[65%] rounded-full"></div>
+</div>
+<div class="w-16 text-right text-data-md font-data-md text-gain">+3.1%</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center gap-3">
+<div class="w-12 text-data-md font-data-md text-on-surface">AMZN</div>
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gain w-[45%] rounded-full"></div>
+</div>
+<div class="w-16 text-right text-data-md font-data-md text-gain">+1.8%</div>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center gap-3">
+<div class="w-12 text-data-md font-data-md text-on-surface">AAPL</div>
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gain w-[25%] rounded-full"></div>
+</div>
+<div class="w-16 text-right text-data-md font-data-md text-gain">+0.9%</div>
+</div>
+<!-- Item 5 -->
+<div class="flex items-center gap-3">
+<div class="w-12 text-data-md font-data-md text-on-surface">MSFT</div>
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gain w-[15%] rounded-full"></div>
+</div>
+<div class="w-16 text-right text-data-md font-data-md text-gain">+0.4%</div>
+</div>
+</div>
+</div>
+<!-- Market Sentiment Meter -->
+<div class="lg:col-span-3 bg-bg-surface border border-border-default rounded-DEFAULT p-card-padding flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-headline font-headline text-on-surface">Fear &amp; Greed</h3>
+<span class="material-symbols-outlined text-secondary text-[18px]">info</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center relative">
+<!-- Semi-circle meter -->
+<svg class="w-full h-auto mb-2" viewbox="0 0 100 50">
+<!-- Background Track -->
+<path d="M 10 50 A 40 40 0 0 1 90 50" fill="none" stroke="#F4F4F5" stroke-linecap="round" stroke-width="12"></path>
+<!-- Gradient/Colored Segments (Simulated via overlay paths) -->
+<path d="M 10 50 A 40 40 0 0 1 30 15.3" fill="none" stroke="#EF4444" stroke-linecap="round" stroke-width="12"></path>
+<path d="M 30 15.3 A 40 40 0 0 1 70 15.3" fill="none" stroke="#F59E0B" stroke-width="12"></path>
+<path d="M 70 15.3 A 40 40 0 0 1 90 50" fill="none" stroke="#059669" stroke-linecap="round" stroke-width="12"></path>
+<!-- Needle (Pointing to 'Greed') -->
+<g transform="rotate(35 50 50)">
+<polygon fill="#1a1c1c" points="48,50 52,50 50,15"></polygon>
+<circle cx="50" cy="50" fill="#1a1c1c" r="4"></circle>
+</g>
+</svg>
+<div class="text-center mt-2">
+<span class="text-display font-display text-on-surface block">68</span>
+<span class="text-label-caps font-label-caps text-gain uppercase tracking-wider block mt-1">Greed</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

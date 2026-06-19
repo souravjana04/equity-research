@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EquityLens Component Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9f9f8",
+                        "info-tint-bg": "#EFF6FF",
+                        "inverse-primary": "#5cdcb3",
+                        "on-primary-container": "#003426",
+                        "text-muted": "#A1A1AA",
+                        "on-background": "#1a1c1c",
+                        "on-primary": "#ffffff",
+                        "warning-tint-bg": "#FFFBEB",
+                        "surface-container-high": "#e8e8e7",
+                        "on-tertiary-fixed": "#1a1b23",
+                        "on-secondary-fixed-variant": "#47464a",
+                        "background": "#f9f9f8",
+                        "tertiary-fixed": "#e3e1ec",
+                        "inverse-surface": "#2f3130",
+                        "primary-fixed": "#7bf9ce",
+                        "warning-tint-border": "#FDE68A",
+                        "tertiary": "#5e5e67",
+                        "primary-container": "#0ea882",
+                        "secondary-fixed-dim": "#c8c5ca",
+                        "surface-variant": "#e2e2e2",
+                        "border-subtle": "#F0F0EF",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1a1c1c",
+                        "loss": "#EF4444",
+                        "gain": "#059669",
+                        "surface-tint": "#006c52",
+                        "on-error": "#ffffff",
+                        "primary": "#006c52",
+                        "outline-variant": "#bccac2",
+                        "warning": "#F59E0B",
+                        "on-secondary-container": "#656467",
+                        "surface-container-lowest": "#ffffff",
+                        "gain-tint-bg": "#F0FBF7",
+                        "loss-tint-border": "#FECACA",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "info": "#2563EB",
+                        "on-tertiary-container": "#2c2c34",
+                        "outline": "#6d7a73",
+                        "on-primary-fixed": "#002117",
+                        "secondary-fixed": "#e4e1e6",
+                        "surface-dim": "#dadad9",
+                        "primary-fixed-dim": "#5cdcb3",
+                        "secondary": "#5f5e61",
+                        "bg-muted": "#F4F4F5",
+                        "gain-tint-border": "#B9EFE1",
+                        "on-tertiary-fixed-variant": "#46464f",
+                        "surface-container": "#eeeeed",
+                        "secondary-container": "#e4e1e6",
+                        "surface-container-low": "#f3f4f3",
+                        "tertiary-fixed-dim": "#c7c5d0",
+                        "surface-bright": "#f9f9f8",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f1f1f0",
+                        "surface-container-highest": "#e2e2e2",
+                        "tertiary-container": "#94939d",
+                        "on-surface-variant": "#3d4a44",
+                        "bg-surface": "#FFFFFF",
+                        "on-secondary": "#ffffff",
+                        "border-strong": "#D4D4D8",
+                        "border-default": "#E4E4E7",
+                        "loss-tint-bg": "#FEF2F2",
+                        "on-primary-fixed-variant": "#00513d",
+                        "info-tint-border": "#BFDBFE",
+                        "on-secondary-fixed": "#1b1b1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "sm": "6px",
+                        "md": "8px",
+                        "lg": "12px",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "36px",
+                        "metric-cell-py": "9px",
+                        "gutter-tight": "6px",
+                        "card-padding": "16px",
+                        "page-x": "24px",
+                        "metric-cell-px": "11px",
+                        "page-y": "28px",
+                        "gutter-default": "10px"
+                    },
+                    "fontFamily": {
+                        "data-md": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display": ["Inter"],
+                        "data-lg": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "data-md": ["13px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline": ["15px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "caption": ["11px", {"lineHeight": "14px", "fontWeight": "400"}],
+                        "body-md": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "display": ["22px", {"lineHeight": "32px", "letterSpacing": "-0.4px", "fontWeight": "600"}],
+                        "data-lg": ["20px", {"lineHeight": "24px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #FAFAF9; font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E4E4E7; border-radius: 10px; }
+        @keyframes pulse-subtle { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .skeleton { animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar Component -->
+<header class="sticky top-0 w-full z-50 flex justify-between items-center px-page-x py-2 bg-surface/80 backdrop-blur-md border-b border-subtle">
+<div class="flex items-center gap-8">
+<h1 class="font-display text-display font-bold text-primary">EquityLens</h1>
+<nav class="hidden md:flex gap-6">
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-secondary hover:text-on-surface transition-colors" href="#">Portfolio</a>
+<a class="font-body-md text-body-md text-secondary hover:text-on-surface transition-colors" href="#">Screener</a>
+<a class="font-body-md text-body-md text-secondary hover:text-on-surface transition-colors" href="#">Research</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined">settings</span></button>
+<div class="w-8 h-8 rounded-full bg-surface-container overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional close-up headshot of a financial analyst in a modern office, soft natural lighting, minimalist aesthetic, neutral color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF0xxIXOlahQY3gKGeOkpFJv52NSkuGxOfa1BwbTdOP-tJ2sYvEPNGj5Fahh2407ntrNb4dZzPtbP6Zmy8beJpA-RLYig4CtfG7tFbdzKBCDF9WUE23_pT6bL4vFN4ycgSGT2DqeNM_gU6ZOPBg4-jJH4e3X9uyGIis2pNGFhzQYrMmAxjuW25J0vlOGSOxY3ZhjNqP-aLBuDjBqbA1kYwoK-L2KHVrpLNIpMnTxmlWNn_y-4jczahHgtwyWayDQHQRV3V_wVwUL16"/>
+</div>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar Variants -->
+<aside class="hidden lg:flex flex-col gap-8 w-64 border-r border-subtle h-[calc(100vh-48px)] p-gutter-default sticky top-12">
+<div class="flex flex-col gap-1">
+<p class="font-label-caps text-label-caps text-text-muted px-3 mb-2">NAVIGATE</p>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary-container text-on-primary-container rounded-md font-bold scale-95 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:bg-surface-container-low transition-colors rounded-md" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="font-body-md text-body-md">Watchlist</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:bg-surface-container-low transition-colors rounded-md" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+</div>
+<div class="mt-auto border-t border-subtle pt-4">
+<p class="font-label-caps text-label-caps text-text-muted px-3 mb-2">UTILITIES</p>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:bg-surface-container-low transition-colors rounded-md" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-body-md text-body-md">Help Center</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 p-page-x lg:p-page-y overflow-hidden">
+<!-- Macro Strip Component -->
+<section class="mb-section-gap">
+<div class="bg-surface border border-default rounded-md px-4 py-2 flex gap-8 items-center overflow-x-auto custom-scrollbar">
+<div class="flex items-center gap-2 whitespace-nowrap">
+<span class="font-body-sm text-body-sm text-secondary">Nifty 50</span>
+<span class="font-data-md text-data-md text-gain">24,560.45</span>
+<span class="font-data-md text-data-md text-gain text-[10px]">+0.4%</span>
+</div>
+<div class="flex items-center gap-2 whitespace-nowrap">
+<span class="font-body-sm text-body-sm text-secondary">USD/INR</span>
+<span class="font-data-md text-data-md text-loss">83.45</span>
+<span class="font-data-md text-data-md text-loss text-[10px]">-0.1%</span>
+</div>
+<div class="flex items-center gap-2 whitespace-nowrap">
+<span class="font-body-sm text-body-sm text-secondary">Crude Oil</span>
+<span class="font-data-md text-data-md text-on-surface">78.20</span>
+<span class="font-data-md text-data-md text-text-muted text-[10px]">0.0%</span>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Cards & Metrics Section -->
+<div class="space-y-6">
+<h2 class="font-headline text-headline text-primary border-b border-subtle pb-2">METRICS &amp; SUMMARY</h2>
+<!-- Metric Cards -->
+<div class="grid grid-cols-2 gap-3">
+<div class="p-card-padding bg-bg-muted rounded-md border border-default">
+<p class="font-label-caps text-label-caps text-secondary mb-1">ROE</p>
+<div class="flex justify-between items-end">
+<span class="font-data-lg text-data-lg">24.5%</span>
+<span class="text-[10px] px-1.5 py-0.5 bg-gain-tint-bg text-gain border border-gain-tint-border rounded-full">+2.1</span>
+</div>
+</div>
+<div class="p-card-padding bg-bg-muted rounded-md border border-default">
+<p class="font-label-caps text-label-caps text-secondary mb-1">DEBT/EQ</p>
+<div class="flex justify-between items-end">
+<span class="font-data-lg text-data-lg">0.42</span>
+<span class="text-[10px] px-1.5 py-0.5 bg-loss-tint-bg text-loss border border-loss-tint-border rounded-full">-0.05</span>
+</div>
+</div>
+</div>
+<!-- Stock Summary Card -->
+<div class="p-card-padding bg-bg-surface border border-default rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-3">
+<div>
+<span class="px-2 py-1 bg-primary/10 text-primary font-data-md text-data-md rounded-md">RELIANCE</span>
+<p class="font-body-sm text-body-sm text-secondary mt-1">Energy &amp; Conglomerate</p>
+</div>
+<div class="text-right">
+<p class="font-data-lg text-data-lg">₹2,847.60</p>
+<p class="font-data-md text-data-md text-gain">+1.84%</p>
+</div>
+</div>
+<div class="pt-3 border-t border-subtle space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-secondary">Thesis</span>
+<span class="px-2 py-0.5 bg-gain-tint-bg text-gain text-[11px] rounded-md border border-gain-tint-border">ACTIVE</span>
+</div>
+<p class="font-body-md text-body-md">Telecom expansion &amp; green energy pivot driving valuation multiple rerating.</p>
+</div>
+</div>
+<!-- Swing Setup -->
+<div class="p-card-padding bg-surface border border-default rounded-lg">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-[20px]">trending_up</span>
+<h3 class="font-headline text-headline">Swing Strategy</h3>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="text-center">
+<p class="font-label-caps text-label-caps text-secondary">ENTRY</p>
+<p class="font-data-md text-data-md">1500</p>
+</div>
+<div class="text-center border-x border-subtle">
+<p class="font-label-caps text-label-caps text-secondary">TARGET</p>
+<p class="font-data-md text-data-md text-gain">1700</p>
+</div>
+<div class="text-center">
+<p class="font-label-caps text-label-caps text-secondary">STOP LOSS</p>
+<p class="font-data-md text-data-md text-loss">1450</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Forms & Controls Section -->
+<div class="space-y-6">
+<h2 class="font-headline text-headline text-primary border-b border-subtle pb-2">INPUTS &amp; ACTIONS</h2>
+<div class="p-card-padding bg-bg-surface border border-default rounded-lg space-y-5">
+<!-- Search & Input -->
+<div class="space-y-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-default rounded-md focus:ring-1 focus:ring-primary focus:border-strong outline-none text-body-md font-body-md" placeholder="Search tickers..." type="text"/>
+</div>
+<input class="w-full px-4 py-2 bg-bg-surface border border-strong rounded-md focus:ring-1 focus:ring-primary outline-none text-body-md font-body-md" type="text" value="Market Cap &gt; 1000Cr"/>
+</div>
+<!-- Buttons -->
+<div class="grid grid-cols-2 gap-3">
+<button class="px-4 py-2 bg-primary text-on-primary font-headline text-headline rounded-md hover:bg-surface-tint transition-all active:scale-95">Primary</button>
+<button class="px-4 py-2 border border-default text-secondary font-headline text-headline rounded-md hover:bg-surface-container-low transition-all">Secondary</button>
+<button class="px-4 py-2 text-secondary hover:text-on-surface font-headline text-headline rounded-md transition-all flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[18px]">close</span> Ghost
+                            </button>
+<button class="px-4 py-2 bg-loss text-on-primary font-headline text-headline rounded-md opacity-50 cursor-not-allowed">Disabled</button>
+</div>
+<!-- Range & Toggles -->
+<div class="space-y-4 pt-2">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md">RSI Alert</span>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</div>
+<input class="w-full h-1.5 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary" type="range"/>
+</div>
+</div>
+<!-- Badges & Chips -->
+<div class="p-card-padding bg-bg-surface border border-default rounded-lg">
+<p class="font-label-caps text-label-caps text-secondary mb-3">BADGES &amp; SIGNALS</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-gain-tint-bg text-gain text-[10px] font-bold border border-gain-tint-border rounded-sm">EPS BEAT</span>
+<span class="px-2 py-1 bg-loss-tint-bg text-loss text-[10px] font-bold border border-loss-tint-border rounded-sm">REV MISS</span>
+<span class="px-2 py-1 bg-warning-tint-bg text-warning text-[10px] font-bold border border-warning-tint-border rounded-sm">RSI 72</span>
+<span class="px-2 py-1 bg-info-tint-bg text-info text-[10px] font-bold border border-info-tint-border rounded-sm">CONCALL</span>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<div class="flex items-center gap-1 px-3 py-1 bg-surface-container border border-default rounded-full">
+<span class="font-body-sm text-body-sm">P/E &lt; 25</span>
+<button class="material-symbols-outlined text-[14px]">close</button>
+</div>
+<button class="px-3 py-1 border border-dashed border-strong text-secondary text-[12px] rounded-full hover:border-primary transition-colors">+ Add Filter</button>
+</div>
+</div>
+</div>
+<!-- Data & Reports Section -->
+<div class="space-y-6">
+<h2 class="font-headline text-headline text-primary border-b border-subtle pb-2">DATA TABLES &amp; REPORTS</h2>
+<!-- Notification -->
+<div class="flex items-center justify-between p-3 bg-gain-tint-bg border border-gain-tint-border rounded-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-gain">check_circle</span>
+<p class="font-body-sm text-body-sm text-on-primary-container">Trade executed successfully</p>
+</div>
+<button class="material-symbols-outlined text-secondary text-[18px]">close</button>
+</div>
+<!-- Mini Data Table -->
+<div class="bg-bg-surface border border-default rounded-lg overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-subtle">
+<th class="p-3 font-label-caps text-label-caps text-secondary">TICKER</th>
+<th class="p-3 font-label-caps text-label-caps text-secondary text-right">LTP</th>
+<th class="p-3 font-label-caps text-label-caps text-secondary text-right">PE</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-subtle">
+<tr class="hover:bg-background transition-colors">
+<td class="p-3 font-data-md text-data-md text-primary">TCS</td>
+<td class="p-3 font-data-md text-data-md text-right">3,842.10</td>
+<td class="p-3 font-data-md text-data-md text-right">32.4</td>
+</tr>
+<tr class="hover:bg-background transition-colors">
+<td class="p-3 font-data-md text-data-md text-primary">HDFCBANK</td>
+<td class="p-3 font-data-md text-data-md text-right">1,640.45</td>
+<td class="p-3 font-data-md text-data-md text-right">18.1</td>
+</tr>
+<!-- Skeleton Row -->
+<tr class="skeleton">
+<td class="p-3"><div class="h-4 bg-surface-container-high rounded w-16"></div></td>
+<td class="p-3"><div class="h-4 bg-surface-container-high rounded w-12 ml-auto"></div></td>
+<td class="p-3"><div class="h-4 bg-surface-container-high rounded w-8 ml-auto"></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Concall Card -->
+<div class="p-card-padding bg-bg-surface border border-default rounded-lg">
+<div class="flex justify-between items-center mb-3">
+<h4 class="font-headline text-headline">INFY Q4 Concall</h4>
+<span class="px-2 py-0.5 bg-gain-tint-bg text-gain text-[10px] font-bold rounded border border-gain-tint-border">POSITIVE</span>
+</div>
+<ul class="space-y-2 mb-4">
+<li class="flex gap-2 font-body-sm text-body-sm text-secondary">
+<span class="text-primary">•</span> Strong cloud pipeline momentum.
+                            </li>
+<li class="flex gap-2 font-body-sm text-body-sm text-secondary">
+<span class="text-primary">•</span> Margin expansion expected in FY25.
+                            </li>
+<li class="flex gap-2 font-body-sm text-body-sm text-secondary">
+<span class="text-primary">•</span> Generative AI deal wins increasing.
+                            </li>
+</ul>
+<a class="text-primary font-body-sm text-body-sm font-bold flex items-center gap-1 hover:underline" href="#">
+                            View Summary <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Empty State -->
+<div class="p-8 text-center border border-dashed border-strong rounded-lg bg-surface/50">
+<span class="material-symbols-outlined text-text-muted text-[48px] mb-2">analytics</span>
+<h4 class="font-headline text-headline mb-1">No stocks in watchlist</h4>
+<p class="font-body-sm text-body-sm text-secondary mb-4">Start tracking opportunities by adding your first company.</p>
+<button class="px-4 py-2 bg-primary text-on-primary font-headline text-headline rounded-md">Add Stock</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Toggle interaction
+        const toggles = document.querySelectorAll('input[type="checkbox"]');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                const parent = e.target.closest('.inline-flex');
+                if (e.target.checked) {
+                    console.log('Feature enabled');
+                }
+            });
+        });
+
+        // Search highlight
+        const searchInput = document.querySelector('input[placeholder="Search tickers..."]');
+        searchInput?.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput?.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>
