@@ -9,9 +9,6 @@ CREATE TABLE IF NOT EXISTS schema_migrations (
 -- Sprint 1, Story 1.6
 -- =============================================================================
 
-PRAGMA journal_mode = WAL;
-PRAGMA foreign_keys = ON;
-
 -- =============================================================================
 -- 1. STOCKS (master registry)
 --    Covers Indian equities, US stocks, global ETFs.

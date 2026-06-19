@@ -16,7 +16,7 @@ const CircularScore = ({ label, value, color }) => {
             cy="32"
             r={radius}
             fill="transparent"
-            stroke="var(--color-border-subtle)"
+            stroke="var(--color-subtle)"
             strokeWidth="4"
           />
           {/* Progress ring */}
