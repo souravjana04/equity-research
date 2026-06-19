@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 
 const FilterChip = ({ label, value, onRemove }) => {
   return (
-    <div className="inline-flex items-center gap-1.5 bg-muted border border-default hover:border-strong transition-colors rounded-full px-3 py-1 font-ui text-[12px] text-primary">
+    <div className="inline-flex items-center gap-1.5 bg-canvas border border-default hover:border-strong transition-colors rounded-full px-3 py-1 font-ui text-[12px] text-primary">
       <span className="text-secondary">{label}</span>
       <span className="font-medium">{value}</span>
       <button 

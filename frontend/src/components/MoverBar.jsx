@@ -11,7 +11,7 @@ const MoverBar = ({ ticker, change, trend, barWidth }) => {
         {ticker}
       </span>
       
-      <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden relative">
+      <div className="flex-1 h-2 bg-canvas rounded-full overflow-hidden relative">
         <div 
           className={`absolute top-0 bottom-0 left-0 rounded-full transition-all duration-500 ${colorClass}`}
           style={{ width: `${Math.min(Math.max(barWidth, 0), 100)}%` }}

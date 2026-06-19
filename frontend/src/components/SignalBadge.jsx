@@ -6,7 +6,7 @@ const SignalBadge = ({ signal }) => {
   const variantMap = {
     BUY: 'bg-gain-bg border-gain-border text-gain',
     SELL: 'bg-loss-bg border-loss-border text-loss',
-    HOLD: 'bg-muted border-default text-secondary',
+    HOLD: 'bg-canvas border-default text-secondary',
   };
 
   return (

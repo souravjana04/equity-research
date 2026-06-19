@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 const EmptyState = ({ icon: Icon, title, subtitle, ctaLabel, onCta }) => {
   return (
     <div className="w-full h-full min-h-[240px] flex flex-col items-center justify-center p-8 text-center bg-surface border border-default rounded-lg">
-      <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
+      <div className="w-16 h-16 rounded-full bg-canvas flex items-center justify-center mb-4">
         {Icon && <Icon className="w-8 h-8 text-muted" />}
       </div>
       <h3 className="font-ui text-[15px] font-medium text-primary mb-1">

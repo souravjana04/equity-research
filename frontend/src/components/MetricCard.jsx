@@ -5,12 +5,12 @@ const MetricCard = ({ label, value, change, trend = 'neutral', variant = 'surfac
   
   const containerClasses = isSurface 
     ? 'bg-surface border border-default rounded-lg p-card-padding' 
-    : 'bg-muted rounded-md px-metric-cell-px py-metric-cell-py';
+    : 'bg-canvas rounded-md px-metric-cell-px py-metric-cell-py';
 
   const trendStyles = {
     gain: 'text-gain bg-gain-bg border-gain-border',
     loss: 'text-loss bg-loss-bg border-loss-border',
-    neutral: 'text-secondary bg-muted border-default',
+    neutral: 'text-secondary bg-canvas border-default',
   };
 
   return (

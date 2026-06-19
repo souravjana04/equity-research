@@ -35,6 +35,19 @@ app.add_middleware(
 async def health_check():
     return {"status": "ok"}
 
-# We will import and include routers here later
-# from api.routes import stocks
-# app.include_router(stocks.router, prefix="/api/stocks", tags=["stocks"])
+from backend.api.routes import (
+    stocks, portfolio, screener, earnings, news,
+    sector, macro, swing, thesis, chat, reports,
+)
+
+app.include_router(stocks.router,    prefix="/api/stocks",    tags=["stocks"])
+app.include_router(portfolio.router, prefix="/api/portfolio", tags=["portfolio"])
+app.include_router(screener.router,  prefix="/api/screener",  tags=["screener"])
+app.include_router(earnings.router,  prefix="/api/earnings",  tags=["earnings"])
+app.include_router(news.router,      prefix="/api/news",      tags=["news"])
+app.include_router(sector.router,    prefix="/api/sector",    tags=["sector"])
+app.include_router(macro.router,     prefix="/api/macro",     tags=["macro"])
+app.include_router(swing.router,     prefix="/api/swing",     tags=["swing"])
+app.include_router(thesis.router,    prefix="/api/thesis",    tags=["thesis"])
+app.include_router(chat.router,      prefix="/api/chat",      tags=["chat"])
+app.include_router(reports.router,   prefix="/api/reports",   tags=["reports"])

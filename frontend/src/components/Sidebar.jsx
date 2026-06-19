@@ -16,7 +16,7 @@ import SectionLabel from './SectionLabel';
 const mainNavItems = [
   { label: 'Dashboard', icon: LayoutDashboard, href: '/' },
   { label: 'Watchlist', icon: List, href: '/watchlist' },
-  { label: 'Portfolio', icon: Briefcase, href: '/portfolio' },
+  { label: 'Portfolio', icon: Briefcase, href: '/' },
   { label: 'Screener', icon: Filter, href: '/screener' },
   { label: 'Markets', icon: Globe, href: '/sector' },
   { label: 'Research', icon: BookOpen, href: '/thesis' },
@@ -52,7 +52,7 @@ const Sidebar = ({ activePage, collapsed = false }) => {
                   key={item.label}
                   to={item.href}
                   className={`flex items-center px-3 py-2 rounded-md transition-colors group
-                    ${isActive ? 'bg-accent text-surface' : 'text-secondary hover:bg-muted hover:text-primary'}
+                    ${isActive ? 'bg-accent text-surface' : 'text-secondary hover:bg-canvas hover:text-primary'}
                   `}
                   title={collapsed ? item.label : undefined}
                 >
@@ -70,7 +70,7 @@ const Sidebar = ({ activePage, collapsed = false }) => {
         {!collapsed && <div className="px-1"><SectionLabel>UTILITIES</SectionLabel></div>}
         <Link
           to="/help"
-          className={`flex items-center px-3 py-2 rounded-md text-secondary hover:bg-muted hover:text-primary transition-colors group mb-4`}
+          className={`flex items-center px-3 py-2 rounded-md text-secondary hover:bg-canvas hover:text-primary transition-colors group mb-4`}
           title={collapsed ? 'Help Center' : undefined}
         >
           <HelpCircle className="w-[18px] h-[18px] shrink-0 text-muted group-hover:text-primary" />

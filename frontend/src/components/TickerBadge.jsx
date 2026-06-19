@@ -11,7 +11,7 @@ const TickerBadge = ({ ticker, variant = 'neutral', size = 'md' }) => {
   const variantClasses = {
     gain: 'bg-gain-bg border-gain-border text-gain',
     loss: 'bg-loss-bg border-loss-border text-loss',
-    neutral: 'bg-muted border-default text-secondary',
+    neutral: 'bg-canvas border-default text-secondary',
   };
 
   return (

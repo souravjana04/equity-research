@@ -7,7 +7,7 @@ const SentimentBadge = ({ sentiment }) => {
     POSITIVE: 'bg-gain-bg border-gain-border text-gain',
     CAUTIOUS: 'bg-warning-bg border-warning-border text-warning',
     NEGATIVE: 'bg-loss-bg border-loss-border text-loss',
-    NEUTRAL: 'bg-muted border-default text-secondary',
+    NEUTRAL: 'bg-canvas border-default text-secondary',
   };
 
   return (

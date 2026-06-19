@@ -4,7 +4,7 @@ const SectorHeatmapTile = ({ sector, change, stocks = [], size = 'md', trend }) 
   const variantMap = {
     gain: 'bg-gain-bg border-gain-border text-gain',
     loss: 'bg-loss-bg border-loss-border text-loss',
-    flat: 'bg-muted border-default text-secondary',
+    flat: 'bg-canvas border-default text-secondary',
   };
 
   const sizeClasses = {

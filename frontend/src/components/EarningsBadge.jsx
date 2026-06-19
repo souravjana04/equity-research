@@ -6,7 +6,7 @@ const EarningsBadge = ({ type }) => {
   const variantMap = {
     EPS_BEAT: 'bg-gain-bg border-gain-border text-gain',
     REV_MISS: 'bg-loss-bg border-loss-border text-loss',
-    IN_LINE: 'bg-muted border-default text-secondary',
+    IN_LINE: 'bg-canvas border-default text-secondary',
     PENDING: 'bg-warning-bg border-warning-border text-warning',
   };
 

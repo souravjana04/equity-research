@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const InlayCell = ({ children, className = '' }) => {
   return (
-    <div className={`bg-muted rounded-md px-metric-cell-px py-metric-cell-py ${className}`}>
+    <div className={`bg-canvas rounded-md px-metric-cell-px py-metric-cell-py ${className}`}>
       {children}
     </div>
   );

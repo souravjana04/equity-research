@@ -7,7 +7,7 @@ const CorporateActionBadge = ({ status }) => {
     SCHEDULED: 'bg-info-bg border-info-border text-info',
     COMPLETED: 'bg-gain-bg border-gain-border text-gain',
     PENDING_APPROVAL: 'bg-warning-bg border-warning-border text-warning',
-    UPCOMING: 'bg-muted border-default text-secondary',
+    UPCOMING: 'bg-canvas border-default text-secondary',
     PAID: 'bg-gain-bg border-gain-border text-gain',
   };
 

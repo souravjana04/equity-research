@@ -5,7 +5,7 @@ const StatusBadge = ({ status }) => {
   
   const variantMap = {
     ACTIVE: 'bg-gain-bg border-gain-border text-gain',
-    EXITED: 'bg-muted border-default text-secondary',
+    EXITED: 'bg-canvas border-default text-secondary',
     PAUSED: 'bg-warning-bg border-warning-border text-warning',
     INVALIDATED: 'bg-loss-bg border-loss-border text-loss',
   };

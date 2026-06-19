@@ -1,14 +1,19 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import TickerBadge from './TickerBadge';
 import Checkbox from './Checkbox';
 import SkeletonRow from './SkeletonRow';
 
+const PAGE_SIZE = 20;
+
 const DataTable = ({ columns, rows, loading, selectable, onRowClick }) => {
+  const [page, setPage] = useState(0);
+
   if (loading) {
     return (
       <div className="w-full bg-surface border border-default rounded-lg overflow-hidden">
         <div className="h-10 border-b border-subtle bg-page flex items-center px-4">
-          <div className="h-3 bg-muted rounded w-[10%]"></div>
+          <div className="h-3 bg-canvas rounded w-[10%]"></div>
         </div>
         {[...Array(5)].map((_, i) => <SkeletonRow key={i} />)}
       </div>
@@ -35,7 +40,7 @@ const DataTable = ({ columns, rows, loading, selectable, onRowClick }) => {
         return col.renderBadge ? col.renderBadge(row) : val;
       case 'sparkline':
         // Placeholder for a small chart
-        return <div className="w-16 h-4 bg-muted rounded-full"></div>;
+        return <div className="w-16 h-4 bg-canvas rounded-full"></div>;
       default:
         return <span className="font-ui text-primary">{val}</span>;
     }
@@ -65,8 +70,8 @@ const DataTable = ({ columns, rows, loading, selectable, onRowClick }) => {
             </tr>
           </thead>
           <tbody>
-            {rows.map((row, idx) => (
-              <tr 
+            {rows.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE).map((row, idx) => (
+              <tr
                 key={idx}
                 onClick={() => onRowClick && onRowClick(row)}
                 className={`border-b border-subtle hover:bg-page transition-colors ${onRowClick ? 'cursor-pointer' : ''}`}
@@ -77,7 +82,7 @@ const DataTable = ({ columns, rows, loading, selectable, onRowClick }) => {
                   </td>
                 )}
                 {columns.map((col) => (
-                  <td 
+                  <td
                     key={col.key}
                     className={`px-4 py-3 text-[13px] whitespace-nowrap
                       ${col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'}
@@ -98,15 +103,29 @@ const DataTable = ({ columns, rows, loading, selectable, onRowClick }) => {
           </tbody>
         </table>
       </div>
-      
+
       {/* Pagination Footer */}
-      <div className="px-4 py-3 border-t border-subtle bg-surface flex items-center justify-between font-ui text-[11px] text-muted">
-        <span>Showing {rows.length} results</span>
-        <div className="flex items-center gap-2">
-          <button className="px-2 py-1 border border-default rounded hover:bg-muted transition-colors disabled:opacity-50">Prev</button>
-          <button className="px-2 py-1 border border-default rounded hover:bg-muted transition-colors">Next</button>
-        </div>
-      </div>
+      {(() => {
+        const totalPages = Math.ceil(rows.length / PAGE_SIZE);
+        return (
+          <div className="px-4 py-3 border-t border-subtle bg-surface flex items-center justify-between font-ui text-[11px] text-muted">
+            <span>Showing {Math.min(rows.length, (page + 1) * PAGE_SIZE)} of {rows.length} results</span>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setPage(p => Math.max(0, p - 1))}
+                disabled={page === 0}
+                className="px-2 py-1 border border-default rounded hover:bg-canvas transition-colors disabled:opacity-50"
+              >Prev</button>
+              <span>{page + 1} / {totalPages || 1}</span>
+              <button
+                onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+                disabled={page >= totalPages - 1}
+                className="px-2 py-1 border border-default rounded hover:bg-canvas transition-colors disabled:opacity-50"
+              >Next</button>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 };

@@ -7,17 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        surface: '#f9f9f8',
-        'bg-surface': '#FFFFFF',
-        'bg-muted': '#F4F4F5',
-        'bg-accent': '#F0FBF7',
-        'bg-page': '#FAFAF9',
-        'border-default': '#E4E4E7',
-        'border-subtle': '#F0F0EF',
-        'border-strong': '#D4D4D8',
-        'text-primary': '#18181B',
-        'text-secondary': '#52525B',
-        'text-muted': '#A1A1AA',
+        page:      '#FAFAF9',
+        surface:   '#FFFFFF',
+        canvas:    '#F4F4F5',
+        primary:   '#18181B',
+        secondary: '#52525B',
+        muted:     '#A1A1AA',
+        default:   '#E4E4E7',
+        subtle:    '#F0F0EF',
+        strong:    '#D4D4D8',
         accent: {
           DEFAULT: '#0EA882',
           hover: '#0C9070'

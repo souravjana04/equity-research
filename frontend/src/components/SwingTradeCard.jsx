@@ -31,7 +31,7 @@ const SwingTradeCard = ({ ticker, entry, target, stopLoss, status, setupType }) 
 
       {setupType && (
         <div className="mt-auto pt-4 border-t border-subtle flex items-center">
-          <span className="font-ui text-[11px] bg-muted text-secondary px-2 py-1 rounded-sm">
+          <span className="font-ui text-[11px] bg-canvas text-secondary px-2 py-1 rounded-sm">
             Setup: {setupType}
           </span>
         </div>

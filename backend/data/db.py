@@ -81,9 +81,12 @@ def run_migrations():
                 
             # Run migration in a transaction
             try:
-                # begin transaction implicitly handled by connection
-                cursor.executescript(sql_script)
-                cursor.execute(
+                conn.execute("BEGIN")
+                for statement in sql_script.split(';'):
+                    stmt = statement.strip()
+                    if stmt:
+                        conn.execute(stmt)
+                conn.execute(
                     "INSERT INTO schema_migrations (version, filename) VALUES (?, ?)",
                     (version, filename)
                 )
