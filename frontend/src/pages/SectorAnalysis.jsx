@@ -236,7 +236,7 @@ const SectorAnalysis = () => {
         {/* 4. Row 2: Charts */}
         <div className="flex flex-col lg:flex-row gap-6 w-full">
           {/* Left: FII/DII Net Flows */}
-          <div className="lg:w-[60%] bg-surface border border-border rounded-lg p-4 flex flex-col">
+          <div className="lg:w-[60%] bg-surface border border-default rounded-lg p-4 flex flex-col">
             <h2 className="text-sm font-medium text-primary">FII / DII Net Flows (Last 30 Days)</h2>
             <div className="h-[280px] w-full mt-4">
               <ResponsiveContainer width="100%" height="100%">
@@ -288,7 +288,7 @@ const SectorAnalysis = () => {
           </div>
 
           {/* Right: FPI Sector Allocation */}
-          <div className="lg:w-[40%] bg-surface border border-border rounded-lg p-4 flex flex-col">
+          <div className="lg:w-[40%] bg-surface border border-default rounded-lg p-4 flex flex-col">
             <h2 className="text-sm font-medium text-primary">FPI Sector Allocation</h2>
             <p className="text-xs text-muted mt-0.5">Foreign Portfolio Investor holdings by sector</p>
             <div className="h-[280px] w-full mt-2">
