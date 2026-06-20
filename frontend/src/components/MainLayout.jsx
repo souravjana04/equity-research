@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import TopNav from './TopNav';
@@ -25,6 +25,11 @@ const MainLayout = () => {
   };
 
   const activePage = getActivePageLabel(location.pathname, location.state);
+
+  // Scroll to top when pathname changes, but not when it stays the same
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-page flex flex-col">
