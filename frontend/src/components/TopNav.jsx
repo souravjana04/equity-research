@@ -1,37 +1,19 @@
-import PropTypes from 'prop-types';
-import { Bell, Settings, Search } from 'lucide-react';
+import { Bell, Settings, Search, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const navLinks = [
-  { label: 'Dashboard', href: '/' },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Screener', href: '/screener' },
-  { label: 'Research', href: '/thesis' },
-];
-
-const TopNav = ({ activePage }) => {
+const TopNav = () => {
   return (
     <header className="sticky top-0 z-50 w-full bg-surface border-b border-subtle h-16 flex items-center justify-between px-6">
-      <div className="flex items-center gap-8 h-full">
-        <Link to="/" className="font-ui text-[18px] font-semibold tracking-tight text-accent">
-          MarketMint
+      <div className="flex items-center gap-3 h-full">
+        <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
+          <div className="w-8 h-8 rounded bg-accent flex items-center justify-center shrink-0">
+            <TrendingUp className="w-5 h-5 text-surface" />
+          </div>
+          <div className="ml-3 text-left">
+            <h1 className="font-ui text-[14px] font-semibold text-primary leading-tight">MarketMint</h1>
+            <p className="font-ui text-[10px] text-muted leading-none mt-0.5">Pro Workspace</p>
+          </div>
         </Link>
-        <nav className="hidden md:flex items-center h-full gap-6">
-          {navLinks.map((link) => {
-            const isActive = activePage === link.label;
-            return (
-              <Link
-                key={link.label}
-                to={link.href}
-                className={`h-full flex items-center font-ui text-[13px] font-medium transition-colors border-b-2
-                  ${isActive ? 'text-accent border-accent' : 'text-secondary border-transparent hover:text-primary'}
-                `}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
       </div>
 
       <div className="flex items-center gap-4">
@@ -57,10 +39,6 @@ const TopNav = ({ activePage }) => {
       </div>
     </header>
   );
-};
-
-TopNav.propTypes = {
-  activePage: PropTypes.string,
 };
 
 export default TopNav;

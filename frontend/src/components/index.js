@@ -29,6 +29,7 @@ export { default as RadioButton } from './RadioButton';
 // Navigation
 export { default as TopNav } from './TopNav';
 export { default as Sidebar } from './Sidebar';
+export { default as MainLayout } from './MainLayout';
 export { default as Breadcrumb } from './Breadcrumb';
 export { default as CommandPalette } from './CommandPalette';
 
@@ -37,12 +38,15 @@ export { default as MetricCard } from './MetricCard';
 export { default as StockSummaryCard } from './StockSummaryCard';
 export { default as SwingTradeCard } from './SwingTradeCard';
 export { default as ConcallSummaryCard } from './ConcallSummaryCard';
+export { default as NewsCard } from './NewsCard';
 export { default as ThesisCard } from './ThesisCard';
 export { default as MacroStrip } from './MacroStrip';
 export { default as SectorHeatmapTile } from './SectorHeatmapTile';
 export { default as PortfolioDonutChart } from './PortfolioDonutChart';
 export { default as MoverBar } from './MoverBar';
 export { default as FinancialHealthScore } from './FinancialHealthScore';
+export { default as WatchlistCard } from './WatchlistCard';
+export { default as EarningsEventCard } from './EarningsEventCard';
 
 // Tables
 export { default as DataTable } from './DataTable';

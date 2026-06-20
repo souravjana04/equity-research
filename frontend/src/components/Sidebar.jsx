@@ -2,43 +2,50 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { 
   LayoutDashboard, 
-  List, 
   Briefcase, 
-  Filter, 
-  Globe, 
-  BookOpen, 
-  MessageSquare,
+  Eye,
+  Newspaper,
+  CalendarDays,
+  SlidersHorizontal,
+  PieChart,
+  Bot,
+  TrendingUp,
+  BookOpen,
+  FileBarChart,
   HelpCircle,
-  TrendingUp
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import SectionLabel from './SectionLabel';
 
 const mainNavItems = [
   { label: 'Dashboard', icon: LayoutDashboard, href: '/' },
-  { label: 'Watchlist', icon: List, href: '/watchlist' },
-  { label: 'Portfolio', icon: Briefcase, href: '/' },
-  { label: 'Screener', icon: Filter, href: '/screener' },
-  { label: 'Markets', icon: Globe, href: '/sector' },
-  { label: 'Research', icon: BookOpen, href: '/thesis' },
-  { label: 'AI Chat', icon: MessageSquare, href: '/chat' },
+  { label: 'Portfolio', icon: Briefcase, href: '/portfolio' },
+  { label: 'Watchlist', icon: Eye, href: '/watchlist' },
+  { label: 'News', icon: Newspaper, href: '/news' },
+  { label: 'Earnings', icon: CalendarDays, href: '/earnings' },
+  { label: 'Screener', icon: SlidersHorizontal, href: '/screener' },
+  { label: 'Sector Analysis', icon: PieChart, href: '/sector' },
+  { label: 'AI Chat', icon: Bot, href: '/chat' },
+  { label: 'Swing Trade', icon: TrendingUp, href: '/swing' },
+  { label: 'Thesis Journal', icon: BookOpen, href: '/thesis' },
+  { label: 'Reports', icon: FileBarChart, href: '/reports' },
 ];
 
-const Sidebar = ({ activePage, collapsed = false }) => {
+const Sidebar = ({ activePage, collapsed = false, onToggleCollapse }) => {
   return (
-    <aside className={`flex flex-col bg-surface border-r border-subtle h-screen sticky top-0 transition-all duration-300 ${collapsed ? 'w-16' : 'w-60'}`}>
+    <aside className={`relative flex flex-col bg-surface border-r border-subtle h-[calc(100vh-4rem)] sticky top-16 z-40 transition-all duration-300 ${collapsed ? 'w-16' : 'w-60'}`}>
       
-      {/* Logo Area */}
-      <div className="h-16 flex items-center px-4 border-b border-subtle">
-        <div className="w-8 h-8 rounded bg-accent flex items-center justify-center shrink-0">
-          <TrendingUp className="w-5 h-5 text-surface" />
-        </div>
-        {!collapsed && (
-          <div className="ml-3 overflow-hidden">
-            <h1 className="font-ui text-[15px] font-semibold text-primary truncate">MarketMint</h1>
-            <p className="font-ui text-[11px] text-muted truncate">Pro Workspace</p>
-          </div>
-        )}
-      </div>
+      {/* Collapse/Expand Toggle Button */}
+      {onToggleCollapse && (
+        <button 
+          onClick={onToggleCollapse}
+          className="absolute -right-3 top-4 w-6 h-6 rounded-full border border-default bg-surface hover:bg-canvas flex items-center justify-center text-secondary hover:text-primary z-50 cursor-pointer shadow-sm"
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {collapsed ? <ChevronRight className="w-3 h-3" /> : <ChevronLeft className="w-3 h-3" />}
+        </button>
+      )}
 
       {/* Main Nav */}
       <div className="flex-1 overflow-y-auto py-6 px-3 flex flex-col gap-6">
@@ -78,13 +85,20 @@ const Sidebar = ({ activePage, collapsed = false }) => {
         </Link>
         
         {!collapsed ? (
-          <button className="w-full bg-accent hover:bg-accent-hover text-surface font-ui text-[13px] font-medium py-2 rounded-md transition-colors">
+          <Link 
+            to="/swing" 
+            className="w-full bg-accent hover:bg-accent-hover text-surface font-ui text-[13px] font-medium py-2 rounded-md transition-colors block text-center cursor-pointer"
+          >
             New Trade
-          </button>
+          </Link>
         ) : (
-          <button className="w-full flex justify-center bg-accent hover:bg-accent-hover text-surface py-2 rounded-md transition-colors" title="New Trade">
+          <Link 
+            to="/swing" 
+            className="w-full flex justify-center bg-accent hover:bg-accent-hover text-surface py-2 rounded-md transition-colors cursor-pointer" 
+            title="New Trade"
+          >
             <TrendingUp className="w-4 h-4" />
-          </button>
+          </Link>
         )}
       </div>
     </aside>
@@ -94,6 +108,7 @@ const Sidebar = ({ activePage, collapsed = false }) => {
 Sidebar.propTypes = {
   activePage: PropTypes.string,
   collapsed: PropTypes.bool,
+  onToggleCollapse: PropTypes.func,
 };
 
 export default Sidebar;

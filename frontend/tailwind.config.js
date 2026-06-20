@@ -61,6 +61,15 @@ export default {
         'gutter-tight': '6px',
         'metric-cell-px': '11px',
         'metric-cell-py': '9px'
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
+      },
+      animation: {
+        marquee: 'marquee 30s linear infinite',
       }
     },
   },

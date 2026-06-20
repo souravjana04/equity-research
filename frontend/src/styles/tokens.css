@@ -57,6 +57,14 @@
   --spacing-gutter-tight:   6px;
   --spacing-metric-cell-px: 11px;
   --spacing-metric-cell-py: 9px;
+
+  /* ── Animations ── */
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
 }
 
 body {

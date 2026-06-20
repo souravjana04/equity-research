@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Search, FileText, ArrowRight, Activity, Filter, Briefcase, ChevronRight } from 'lucide-react';
+import { Search, FileText, Activity, Filter, Briefcase } from 'lucide-react';
 import TickerBadge from './TickerBadge';
 import SectionLabel from './SectionLabel';
 
