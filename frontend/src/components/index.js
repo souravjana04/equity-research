@@ -56,6 +56,7 @@ export { default as SkeletonRow } from './SkeletonRow';
 
 // Filters, Accordions & Misc
 export { default as FilterChip } from './FilterChip';
+export { default as FilterPill } from './FilterPill';
 export { default as AddFilterButton } from './AddFilterButton';
 export { default as ScreenerFilterPanel } from './ScreenerFilterPanel';
 export { default as AlertBanner } from './AlertBanner';
