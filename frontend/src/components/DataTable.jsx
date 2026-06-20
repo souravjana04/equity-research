@@ -7,7 +7,7 @@ import SkeletonRow from './SkeletonRow';
 
 const PAGE_SIZE = 20;
 
-const DataTable = ({ columns, rows, loading, selectable, onRowClick, footer }) => {
+const DataTable = ({ columns, rows, loading, selectable, onRowClick, footer, getRowClassName }) => {
   const [page, setPage] = useState(0);
 
   if (loading) {
@@ -81,7 +81,7 @@ const DataTable = ({ columns, rows, loading, selectable, onRowClick, footer }) =
               <tr
                 key={idx}
                 onClick={() => onRowClick && onRowClick(row)}
-                className={`border-b border-subtle hover:bg-page transition-colors ${onRowClick ? 'cursor-pointer' : ''}`}
+                className={`border-b border-subtle hover:bg-page transition-colors ${onRowClick ? 'cursor-pointer' : ''} ${getRowClassName ? getRowClassName(row) : ''}`}
               >
                 {selectable && (
                   <td className="px-4 py-3 w-10">
@@ -152,6 +152,7 @@ DataTable.propTypes = {
   selectable: PropTypes.bool,
   onRowClick: PropTypes.func,
   footer: PropTypes.node,
+  getRowClassName: PropTypes.func,
 };
 
 export default DataTable;

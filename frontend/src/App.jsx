@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Bot, BookOpen } from 'lucide-react';
-import ComponentShowcase from './ComponentShowcase';
 import { MainLayout, Breadcrumb } from './components';
 
 import Dashboard from './pages/Dashboard';
@@ -60,9 +59,6 @@ function App() {
           <Route path="/thesis" element={<ThesisJournal />} />
           <Route path="/reports" element={<Reports />} />
         </Route>
-        
-        {/* Isolated Component Showcase */}
-        <Route path="/showcase" element={<ComponentShowcase />} />
       </Routes>
     </Router>
   );

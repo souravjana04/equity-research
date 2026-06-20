@@ -1,52 +1,94 @@
 import PropTypes from 'prop-types';
-import { TrendingUp } from 'lucide-react';
-import StatusBadge from './StatusBadge';
+import TickerBadge from './TickerBadge';
+import SignalBadge from './SignalBadge';
+import Button from './Button';
+import { X, ArrowRight } from 'lucide-react';
 
-const SwingTradeCard = ({ ticker, entry, target, stopLoss, status, setupType }) => {
+const SwingTradeCard = ({ 
+  ticker, 
+  company, 
+  signal, 
+  entryLow, 
+  entryHigh, 
+  target, 
+  stopLoss, 
+  rr, 
+  onDismiss, 
+  onOpenTrade 
+}) => {
+  let rrColor = 'text-primary';
+  if (rr >= 2) {
+    rrColor = 'text-gain';
+  } else if (rr >= 1) {
+    rrColor = 'text-warning';
+  } else {
+    rrColor = 'text-loss';
+  }
+
+  const formatNumber = (num) => new Intl.NumberFormat('en-IN').format(num);
+
   return (
-    <div className="bg-surface border border-default rounded-lg p-card-padding flex flex-col">
-      <div className="flex items-center justify-between mb-5">
-        <div className="flex items-center gap-2 text-primary font-ui text-[15px] font-medium">
-          <TrendingUp className="w-4 h-4 text-accent" />
-          <span>Swing Strategy</span>
-          <span className="font-mono text-[13px] text-muted ml-1">{ticker}</span>
+    <div className="bg-surface border border-default rounded-lg p-4 flex flex-col hover:border-accent/50 transition-colors">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <TickerBadge ticker={ticker} />
+          <span className="text-sm font-medium text-primary">{company}</span>
         </div>
-        <StatusBadge status={status} />
+        <SignalBadge signal={signal} />
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mb-4">
+      <div className="grid grid-cols-4 gap-2 mb-5">
         <div className="flex flex-col">
-          <span className="font-ui text-[10px] font-semibold tracking-[0.05em] uppercase text-muted mb-1">Entry</span>
-          <span className="font-mono text-[13px] font-medium text-primary">{entry}</span>
+          <span className="text-xs text-muted mb-1">Entry Zone</span>
+          <span className="font-mono text-sm">₹{formatNumber(entryLow)}–{formatNumber(entryHigh)}</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-ui text-[10px] font-semibold tracking-[0.05em] uppercase text-muted mb-1">Target</span>
-          <span className="font-mono text-[13px] font-medium text-gain">{target}</span>
+          <span className="text-xs text-muted mb-1">Target</span>
+          <span className="font-mono text-sm text-gain">₹{formatNumber(target)}</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-ui text-[10px] font-semibold tracking-[0.05em] uppercase text-muted mb-1">Stop Loss</span>
-          <span className="font-mono text-[13px] font-medium text-loss">{stopLoss}</span>
+          <span className="text-xs text-muted mb-1">Stop Loss</span>
+          <span className="font-mono text-sm text-loss">₹{formatNumber(stopLoss)}</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-xs text-muted mb-1">R:R</span>
+          <span className={`font-mono text-sm font-bold ${rrColor}`}>{rr} : 1</span>
         </div>
       </div>
 
-      {setupType && (
-        <div className="mt-auto pt-4 border-t border-subtle flex items-center">
-          <span className="font-ui text-[11px] bg-canvas text-secondary px-2 py-1 rounded-sm">
-            Setup: {setupType}
-          </span>
-        </div>
-      )}
+      <div className="flex items-center justify-between mt-auto pt-2">
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          onClick={onDismiss}
+          className="text-muted hover:text-loss !px-2"
+        >
+          <X className="w-4 h-4 mr-1" />
+          Dismiss
+        </Button>
+        <Button 
+          variant="accent" 
+          size="sm" 
+          onClick={onOpenTrade}
+        >
+          Open Trade <ArrowRight className="w-4 h-4 ml-1" />
+        </Button>
+      </div>
     </div>
   );
 };
 
 SwingTradeCard.propTypes = {
   ticker: PropTypes.string.isRequired,
-  entry: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  target: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  stopLoss: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  status: PropTypes.oneOf(['ACTIVE', 'EXITED', 'PAUSED', 'INVALIDATED']).isRequired,
-  setupType: PropTypes.string,
+  company: PropTypes.string.isRequired,
+  signal: PropTypes.string.isRequired,
+  entryLow: PropTypes.number.isRequired,
+  entryHigh: PropTypes.number.isRequired,
+  target: PropTypes.number.isRequired,
+  stopLoss: PropTypes.number.isRequired,
+  rr: PropTypes.number.isRequired,
+  onDismiss: PropTypes.func,
+  onOpenTrade: PropTypes.func,
 };
 
 export default SwingTradeCard;
