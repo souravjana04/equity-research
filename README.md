@@ -91,10 +91,12 @@ Each page answers one specific question for the user:
 - Last 30 days, refreshed on schedule
 
 #### Screener
+- Dual-tabbed interface for Fundamental and Technical screening
 - Fundamental filters: P/E, P/B, ROCE, ROE, Debt/Equity,
-  market cap, dividend yield
-- Technical filters: RSI, 50/200 DMA cross, volume spike
-- Save and name presets
+  market cap, dividend yield, sector multi-select
+- Technical filters: RSI, 50/200 DMA cross, volume spike, signal types
+- Dynamic active filter grids with +Add Filter dropdown
+- Save and name presets via slide-in panel
 - Results link directly to Stock Detail page
 
 #### Sector Analysis

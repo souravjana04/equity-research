@@ -7,7 +7,7 @@ import SkeletonRow from './SkeletonRow';
 
 const PAGE_SIZE = 20;
 
-const DataTable = ({ columns, rows, loading, selectable, onRowClick }) => {
+const DataTable = ({ columns, rows, loading, selectable, onRowClick, footer }) => {
   const [page, setPage] = useState(0);
 
   if (loading) {
@@ -112,7 +112,7 @@ const DataTable = ({ columns, rows, loading, selectable, onRowClick }) => {
       </div>
 
       {/* Pagination Footer */}
-      {(() => {
+      {footer ? footer : (() => {
         const totalPages = Math.ceil(rows.length / PAGE_SIZE);
         return (
           <div className="px-4 py-3 border-t border-subtle bg-surface flex items-center justify-between font-ui text-[11px] text-muted">
@@ -151,6 +151,7 @@ DataTable.propTypes = {
   loading: PropTypes.bool,
   selectable: PropTypes.bool,
   onRowClick: PropTypes.func,
+  footer: PropTypes.node,
 };
 
 export default DataTable;

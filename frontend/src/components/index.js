@@ -67,3 +67,6 @@ export { default as EmptyState } from './EmptyState';
 
 export { default as AlertPopover } from './AlertPopover';
 export { default as PositionBar } from './PositionBar';
+export { default as Badge } from './Badge';
+export { default as Button } from './Button';
+export { default as Tabs } from './Tabs';
