@@ -1,64 +1,57 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
-const SectorHeatmapTile = ({ sector, change, stocks = [], size = 'md', trend }) => {
-  const variantMap = {
-    gain: 'bg-gain-bg border-gain-border text-gain',
-    loss: 'bg-loss-bg border-loss-border text-loss',
-    flat: 'bg-canvas border-default text-secondary',
-  };
-
-  const sizeClasses = {
-    lg: 'min-h-[140px] p-3',
-    md: 'min-h-[100px] p-3',
-    sm: 'min-h-[60px] p-2 flex items-center justify-between',
-  };
-
-  const showChildren = size === 'lg' && stocks.length > 0;
+const SectorHeatmapTile = ({ sector, changeValue }) => {
+  const navigate = useNavigate();
+  
+  const isStrong = changeValue > 2 || changeValue < -2;
+  const isModerate = (changeValue > 1 && changeValue <= 2) || (changeValue < -1 && changeValue >= -2);
+  
+  let bgClass = 'bg-surface';
+  let textClass = 'text-primary';
+  
+  if (changeValue > 0) {
+    if (isStrong) { bgClass = 'bg-gain'; textClass = 'text-white'; }
+    else if (isModerate) { bgClass = 'bg-gain/60'; textClass = 'text-white'; }
+    else { bgClass = 'bg-gain/20'; textClass = 'text-gain'; }
+  } else if (changeValue < 0) {
+    if (isStrong) { bgClass = 'bg-loss'; textClass = 'text-white'; }
+    else if (isModerate) { bgClass = 'bg-loss/60'; textClass = 'text-white'; }
+    else { bgClass = 'bg-loss/20'; textClass = 'text-loss'; }
+  }
+  
+  let trendLabel = "→ Flat";
+  if (changeValue > 1) trendLabel = "▲ Leading today";
+  else if (changeValue < -1) trendLabel = "▼ Lagging today";
 
   return (
-    <div className={`rounded-lg border min-w-[128px] ${variantMap[trend]} ${sizeClasses[size]} flex flex-col transition-transform hover:scale-[1.01] cursor-pointer`}>
-      {size === 'sm' ? (
-        <div className="flex items-center justify-between w-full">
-          <span className="font-ui text-[13px] font-semibold">{sector}</span>
-          <span className="font-mono text-[13px] font-medium">{change}</span>
+    <div 
+      className={`rounded-lg min-h-[120px] p-4 flex flex-col justify-between transition-transform hover:scale-[1.02] cursor-pointer shadow-sm border border-border/50 ${bgClass} ${textClass}`}
+      onClick={() => navigate(`/screener?sector=${sector}`)}
+    >
+      <div>
+        <h3 className={`text-sm font-medium ${textClass === 'text-white' ? 'opacity-90' : ''}`}>
+          {sector}
+        </h3>
+        <div className="mt-2 text-center">
+          <span className="text-2xl font-mono font-bold">
+            {changeValue > 0 ? '+' : ''}{changeValue.toFixed(1)}%
+          </span>
+          <div className={`text-xs mt-0.5 ${textClass === 'text-white' ? 'opacity-80' : 'opacity-70'}`}>
+            {trendLabel}
+          </div>
         </div>
-      ) : (
-        <div className="flex flex-col gap-1">
-          <span className="font-ui text-[13px] font-semibold leading-tight">{sector}</span>
-          <span className="font-mono text-[15px] font-semibold">{change}</span>
-        </div>
-      )}
-
-      {showChildren && (
-        <div className="mt-3 flex flex-col gap-1.5">
-          {stocks.slice(0, 4).map((stock, idx) => (
-            <div key={idx} className="flex justify-between items-center bg-surface/50 rounded px-1.5 py-1">
-              <span className="font-mono text-[11px] font-medium truncate max-w-[60%] opacity-90">{stock.ticker}</span>
-              <span className="font-mono text-[11px] font-medium opacity-90">{stock.change}</span>
-            </div>
-          ))}
-          {stocks.length > 4 && (
-            <div className="text-center font-ui text-[10px] opacity-70 mt-1">
-              +{stocks.length - 4} more
-            </div>
-          )}
-        </div>
-      )}
+      </div>
+      <div className={`text-xs mt-3 text-center font-medium ${textClass} ${textClass === 'text-white' ? 'opacity-90' : 'opacity-80 hover:text-accent'}`}>
+        Screen stocks →
+      </div>
     </div>
   );
 };
 
 SectorHeatmapTile.propTypes = {
   sector: PropTypes.string.isRequired,
-  change: PropTypes.string.isRequired,
-  stocks: PropTypes.arrayOf(
-    PropTypes.shape({
-      ticker: PropTypes.string.isRequired,
-      change: PropTypes.string.isRequired,
-    })
-  ),
-  size: PropTypes.oneOf(['lg', 'md', 'sm']),
-  trend: PropTypes.oneOf(['gain', 'loss', 'flat']).isRequired,
+  changeValue: PropTypes.number.isRequired,
 };
 
 export default SectorHeatmapTile;

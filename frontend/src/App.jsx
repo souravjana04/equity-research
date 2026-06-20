@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Eye, SlidersHorizontal, PieChart, Bot, BookOpen } from 'lucide-react';
+import { Bot, BookOpen } from 'lucide-react';
 import ComponentShowcase from './ComponentShowcase';
 import { MainLayout, Breadcrumb } from './components';
 
@@ -13,17 +13,9 @@ import Reports from './pages/Reports';
 
 import Watchlist from './pages/Watchlist';
 import Screener from './pages/Screener';
+import SectorAnalysis from './pages/SectorAnalysis';
 
-const SectorAnalysisPlaceholder = () => (
-  <div className="w-full min-h-screen bg-page flex flex-col font-ui text-primary">
-    <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Sector Analysis' }]} />
-    <div className="flex-1 flex flex-col items-center justify-center p-8 text-center max-w-[600px] mx-auto -mt-16">
-      <PieChart className="w-12 h-12 text-muted mb-4" />
-      <h1 className="text-2xl font-semibold tracking-tight mb-2">Sector Analysis</h1>
-      <p className="text-[14px] text-secondary">Coming soon — this page is under construction.</p>
-    </div>
-  </div>
-);
+
 
 const AIStockChat = () => (
   <div className="w-full min-h-screen bg-page flex flex-col font-ui text-primary">
@@ -60,8 +52,8 @@ function App() {
           <Route path="/earnings" element={<Earnings />} />
           <Route path="/news" element={<News />} />
           <Route path="/screener" element={<Screener />} />
-          <Route path="/markets" element={<SectorAnalysisPlaceholder />} />
-          <Route path="/sector" element={<SectorAnalysisPlaceholder />} />
+          <Route path="/markets" element={<SectorAnalysis />} />
+          <Route path="/sector" element={<SectorAnalysis />} />
           <Route path="/chat" element={<AIStockChat />} />
           <Route path="/swing" element={<SwingTrade />} />
           <Route path="/research" element={<ThesisJournal />} />

@@ -12,6 +12,7 @@ export { default as EarningsBadge } from './EarningsBadge';
 export { default as SentimentBadge } from './SentimentBadge';
 export { default as SignalBadge } from './SignalBadge';
 export { default as SectorTag } from './SectorTag';
+export { default as SectorTagWithDot } from './SectorTagWithDot';
 export { default as RSIBadge } from './RSIBadge';
 export { default as ConcallBadge } from './ConcallBadge';
 export { default as CorporateActionBadge } from './CorporateActionBadge';
@@ -47,6 +48,7 @@ export { default as MoverBar } from './MoverBar';
 export { default as FinancialHealthScore } from './FinancialHealthScore';
 export { default as WatchlistCard } from './WatchlistCard';
 export { default as EarningsEventCard } from './EarningsEventCard';
+export { default as MomentumBar } from './MomentumBar';
 
 // Tables
 export { default as DataTable } from './DataTable';

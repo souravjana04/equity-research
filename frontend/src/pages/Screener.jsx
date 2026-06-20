@@ -191,10 +191,10 @@ const Screener = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-page flex flex-col font-ui text-primary">
+    <div className="w-full min-h-screen bg-page flex flex-col max-w-[1440px] mx-auto font-ui text-primary relative">
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Screener' }]} />
 
-      <div className="flex-1 max-w-7xl mx-auto w-full flex flex-col gap-6 px-6 py-6 pb-20">
+      <div className="flex-1 px-4 md:px-page-x py-page-y flex flex-col gap-section-gap w-full pb-20">
         
         {/* Header */}
         <div className="flex items-start justify-between">
