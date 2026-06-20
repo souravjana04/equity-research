@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { ChevronDown } from 'lucide-react';
 import TickerBadge from './TickerBadge';
 import Checkbox from './Checkbox';
 import SkeletonRow from './SkeletonRow';
@@ -60,11 +61,17 @@ const DataTable = ({ columns, rows, loading, selectable, onRowClick }) => {
               {columns.map((col) => (
                 <th 
                   key={col.key}
-                  className={`px-4 py-3 border-b border-subtle font-ui text-[10px] font-semibold tracking-[0.05em] uppercase text-muted whitespace-nowrap
+                  className={`px-4 py-3 border-b border-subtle font-ui text-[10px] font-semibold tracking-[0.05em] uppercase text-muted whitespace-nowrap group
                     ${col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'}
+                    ${col.sortable ? 'cursor-pointer select-none' : ''}
                   `}
                 >
-                  {col.label}
+                  <div className={`flex items-center gap-1 ${col.align === 'right' ? 'justify-end' : col.align === 'center' ? 'justify-center' : 'justify-start'}`}>
+                    {col.label}
+                    {col.sortable && (
+                      <ChevronDown className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-muted" />
+                    )}
+                  </div>
                 </th>
               ))}
             </tr>

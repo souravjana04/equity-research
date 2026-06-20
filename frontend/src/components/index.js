@@ -64,8 +64,5 @@ export { default as AccordionRow } from './AccordionRow';
 export { default as CorporateActionRow } from './CorporateActionRow';
 export { default as EmptyState } from './EmptyState';
 
-
-
-
-
-
+export { default as AlertPopover } from './AlertPopover';
+export { default as PositionBar } from './PositionBar';

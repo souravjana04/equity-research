@@ -8,7 +8,7 @@ const MainLayout = () => {
   const location = useLocation();
 
   // Helper to determine active page label based on URL path
-  const getActivePageLabel = (pathname) => {
+  const getActivePageLabel = (pathname, state) => {
     if (pathname === '/') return 'Dashboard';
     if (pathname === '/portfolio') return 'Portfolio';
     if (pathname === '/watchlist') return 'Watchlist';
@@ -20,10 +20,11 @@ const MainLayout = () => {
     if (pathname === '/swing') return 'Swing Trade';
     if (pathname === '/thesis' || pathname === '/research') return 'Thesis Journal';
     if (pathname === '/reports') return 'Reports';
+    if (pathname.startsWith('/stock')) return state?.from || '';
     return '';
   };
 
-  const activePage = getActivePageLabel(location.pathname);
+  const activePage = getActivePageLabel(location.pathname, location.state);
 
   return (
     <div className="min-h-screen bg-page flex flex-col">

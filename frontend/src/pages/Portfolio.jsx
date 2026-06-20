@@ -136,7 +136,7 @@ const Portfolio = () => {
         <DataTable 
           columns={holdingsColumns}
           rows={holdingsData}
-          onRowClick={(row) => navigate('/stock/' + row.ticker)}
+          onRowClick={(row) => navigate('/stock/' + row.ticker, { state: { from: 'Portfolio', fromPath: '/portfolio' } })}
         />
       </section>
 

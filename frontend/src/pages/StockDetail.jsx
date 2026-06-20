@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
 import Badge from '../components/Badge';
 import Button from '../components/Button';
@@ -173,7 +173,11 @@ const ConcallsTab = () => (
 
 const StockDetail = () => {
   const { ticker } = useParams();
+  const location = useLocation();
   const [chartRange, setChartRange] = useState('1M');
+
+  const fromLabel = location.state?.from || 'Stock Detail';
+  const fromPath = location.state?.fromPath;
 
   const tabsData = [
     { id: 'overview', label: 'Overview', content: <OverviewTab /> },
@@ -187,7 +191,7 @@ const StockDetail = () => {
     <div className="w-full min-h-screen bg-page flex flex-col max-w-[1440px] mx-auto">
       <Breadcrumb items={[
         { label: 'Home', href: '/' },
-        { label: 'Stock Detail' },
+        fromPath ? { label: fromLabel, href: fromPath } : { label: fromLabel },
         { label: ticker || stockDetailHero.ticker, isTickerBadge: true }
       ]} />
       

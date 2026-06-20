@@ -184,7 +184,7 @@ Thesis:     Notion via MCP
 equity-research/
 ├── frontend/                    # React + Vite (port 5173)
 │   └── src/
-│       ├── components/          # 45 reusable UI components
+│       ├── components/          # 54 reusable UI components
 │       │   └── index.js         # Barrel export — always import from here
 │       ├── pages/               # 11 page components (one per route)
 │       ├── hooks/               # Custom React hooks
@@ -322,7 +322,7 @@ Full token definitions in frontend/tailwind.config.js and
 frontend/src/styles/tokens.css.
 
 Component library:
-- 45 reusable components in frontend/src/components/
+- 54 reusable components in frontend/src/components/
 - Designed in Google Stitch, exported as JSX + Tailwind,
   implemented via Antigravity
 - Always import via barrel: import { X, Y } from '../components'
@@ -380,4 +380,4 @@ Always refer to these files when making decisions:
   frontend/src/styles/tokens.css    CSS custom properties
   backend/migrations/0001_*.sql     Full database schema
   DESIGN.md                         Typography, spacing, elevation
-  frontend/src/components/index.js  All 45 component exports
+  frontend/src/components/index.js  All 54 component exports
