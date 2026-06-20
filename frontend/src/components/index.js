@@ -48,6 +48,7 @@ export { default as MoverBar } from './MoverBar';
 export { default as FinancialHealthScore } from './FinancialHealthScore';
 export { default as WatchlistCard } from './WatchlistCard';
 export { default as EarningsEventCard } from './EarningsEventCard';
+export { default as EarningsDetailCard } from './EarningsDetailCard';
 export { default as MomentumBar } from './MomentumBar';
 
 // Tables

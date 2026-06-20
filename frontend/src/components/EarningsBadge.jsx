@@ -1,31 +1,31 @@
 import PropTypes from 'prop-types';
 
 const EarningsBadge = ({ type }) => {
-  const baseClasses = 'font-ui text-[10px] font-semibold leading-[12px] tracking-[0.05em] uppercase rounded-sm border px-2 py-1 inline-flex items-center justify-center';
+  const baseClasses = 'font-ui text-xs font-medium uppercase rounded-md border px-2 py-0.5 inline-flex items-center justify-center';
   
   const variantMap = {
-    EPS_BEAT: 'bg-gain-bg border-gain-border text-gain',
-    REV_MISS: 'bg-loss-bg border-loss-border text-loss',
-    IN_LINE: 'bg-canvas border-default text-secondary',
-    PENDING: 'bg-warning-bg border-warning-border text-warning',
+    beat: 'bg-gain/10 border-gain text-gain',
+    miss: 'bg-loss/10 border-loss text-loss',
+    inline: 'bg-warning/10 border-warning text-warning',
+    pending: 'bg-muted/10 border-default text-muted',
   };
 
   const labelMap = {
-    EPS_BEAT: 'BEAT',
-    REV_MISS: 'MISS',
-    IN_LINE: 'IN LINE',
-    PENDING: 'PENDING',
+    beat: 'BEAT',
+    miss: 'MISS',
+    inline: 'IN-LINE',
+    pending: 'PENDING',
   };
 
   return (
-    <span className={`${baseClasses} ${variantMap[type] || variantMap.IN_LINE}`}>
+    <span className={`${baseClasses} ${variantMap[type] || variantMap.pending}`}>
       {labelMap[type] || type}
     </span>
   );
 };
 
 EarningsBadge.propTypes = {
-  type: PropTypes.oneOf(['EPS_BEAT', 'REV_MISS', 'IN_LINE', 'PENDING']).isRequired,
+  type: PropTypes.oneOf(['beat', 'miss', 'inline', 'pending']).isRequired,
 };
 
 export default EarningsBadge;

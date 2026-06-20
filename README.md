@@ -80,7 +80,8 @@ Each page answers one specific question for the user:
 - Alert badges when a stock hits target price or RSI extreme
 
 #### Earnings Tracker
-- Calendar view of upcoming results and corporate actions
+- Interactive monthly calendar view with dynamic event detail panel
+- Data table list view for deep financial metrics and concall summaries
 - Filter by holdings / watchlist / all NSE
 - Post-result surprise badge: Beat / Miss / In-line
 
@@ -186,7 +187,7 @@ Thesis:     Notion via MCP
 equity-research/
 ├── frontend/                    # React + Vite (port 5173)
 │   └── src/
-│       ├── components/          # 57 reusable UI components
+│       ├── components/          # 58 reusable UI components
 │       │   └── index.js         # Barrel export — always import from here
 │       ├── pages/               # 11 page components (one per route)
 │       ├── hooks/               # Custom React hooks
@@ -324,7 +325,7 @@ Full token definitions in frontend/tailwind.config.js and
 frontend/src/styles/tokens.css.
 
 Component library:
-- 57 reusable components in frontend/src/components/
+- 58 reusable components in frontend/src/components/
 - Designed in Google Stitch, exported as JSX + Tailwind,
   implemented via Antigravity
 - Always import via barrel: import { X, Y } from '../components'
